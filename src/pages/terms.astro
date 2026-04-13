@@ -1,0 +1,76 @@
+---
+import SubpageLayout from '../layouts/SubpageLayout.astro';
+import { t } from '../i18n/translations';
+
+const lang = 'en';
+---
+
+<SubpageLayout lang={lang} title={t(lang, 'terms.title')}>
+  <div class="mb-12">
+    <h1 class="heading-lg text-4xl md:text-5xl mb-4">{t(lang, 'terms.title')}</h1>
+    <p class="text-sm text-dark-text-dim">{t(lang, 'terms.lastUpdated')}: {t(lang, 'terms.date')}</p>
+  </div>
+
+  <div class="legal-content space-y-8">
+    <section>
+      <h2>1. Acceptance of Terms</h2>
+      <p>By accessing and using Glastok, you accept and agree to be bound by the terms and provisions of this agreement. If you do not agree to these terms, please do not use our service.</p>
+    </section>
+
+    <section>
+      <h2>2. Description of Service</h2>
+      <p>Glastok provides a web-based inventory management platform that enables businesses to track products, manage warehouses, monitor stock movements, and generate reports. The service is provided "as is" and we reserve the right to modify or discontinue features with reasonable notice.</p>
+    </section>
+
+    <section>
+      <h2>3. User Accounts</h2>
+      <p>You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You agree to notify us immediately of any unauthorized use of your account.</p>
+    </section>
+
+    <section>
+      <h2>4. Acceptable Use</h2>
+      <p>You agree to use Glastok only for lawful purposes and in accordance with these terms. You may not use the service to store, transmit, or process any data that violates applicable laws or regulations.</p>
+    </section>
+
+    <section>
+      <h2>5. Data Ownership</h2>
+      <p>You retain all rights to the data you input into Glastok. We do not claim ownership of your inventory data, product information, or any other content you create within the platform. You may export or delete your data at any time.</p>
+    </section>
+
+    <section>
+      <h2>6. Service Availability</h2>
+      <p>We strive to maintain 99.9% uptime for our services. However, we do not guarantee uninterrupted access and are not liable for any downtime or service interruptions due to maintenance, updates, or circumstances beyond our control.</p>
+    </section>
+
+    <section>
+      <h2>7. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law, Glastok and its operators shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the service.</p>
+    </section>
+
+    <section>
+      <h2>8. Changes to Terms</h2>
+      <p>We reserve the right to modify these terms at any time. We will provide notice of significant changes via the platform or email. Your continued use of the service after changes constitutes acceptance of the new terms.</p>
+    </section>
+
+    <section>
+      <h2>9. Contact</h2>
+      <p>For questions about these terms, please contact us at <a href="mailto:info@glastok.com" class="text-brand-primary hover:underline">info@glastok.com</a>.</p>
+    </section>
+  </div>
+</SubpageLayout>
+
+<style>
+  .legal-content h2 {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-dark-text);
+    margin-bottom: 8px;
+  }
+  .legal-content p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--color-dark-text-muted);
+  }
+</style>

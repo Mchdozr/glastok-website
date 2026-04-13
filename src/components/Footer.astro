@@ -8,6 +8,7 @@ interface Props {
 const { lang } = Astro.props;
 
 const currentYear = new Date().getFullYear();
+const p = lang === 'en' ? '' : '/tr'; // path prefix for subpages
 ---
 
 <footer class="relative bg-[var(--color-dark-bg)] overflow-hidden" role="contentinfo" aria-label="Site footer">
@@ -79,9 +80,9 @@ const currentYear = new Date().getFullYear();
       <div class="space-y-4 reveal reveal-delay-2">
         <h3 class="footer-col-heading">{t(lang, 'footer.company')}</h3>
         <ul class="space-y-2.5" role="list">
-          <li><a href="#" class="footer-link">{t(lang, 'footer.about')}</a></li>
-          <li><a href="#" class="footer-link">{t(lang, 'footer.careers')}</a></li>
-          <li><a href="#" class="footer-link">{t(lang, 'footer.blog')}</a></li>
+          <li><a href={`${p}/about/`} class="footer-link">{t(lang, 'footer.about')}</a></li>
+          <li><a href={`${p}/careers/`} class="footer-link">{t(lang, 'footer.careers')}</a></li>
+          <li><a href={`${p}/blog/`} class="footer-link">{t(lang, 'footer.blog')}</a></li>
           <li><a href="#contact" class="footer-link">{t(lang, 'nav.contact')}</a></li>
         </ul>
       </div>
@@ -90,8 +91,8 @@ const currentYear = new Date().getFullYear();
       <div class="space-y-4 reveal reveal-delay-3">
         <h3 class="footer-col-heading">{t(lang, 'footer.legal')}</h3>
         <ul class="space-y-2.5" role="list">
-          <li><a href="#" class="footer-link">{t(lang, 'footer.privacy')}</a></li>
-          <li><a href="#" class="footer-link">{t(lang, 'footer.terms')}</a></li>
+          <li><a href={`${p}/privacy/`} class="footer-link">{t(lang, 'footer.privacy')}</a></li>
+          <li><a href={`${p}/terms/`} class="footer-link">{t(lang, 'footer.terms')}</a></li>
         </ul>
       </div>
 
@@ -104,15 +105,21 @@ const currentYear = new Date().getFullYear();
       <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
 
         <!-- Copyright -->
-        <p class="footer-copyright">
-          &copy; {currentYear} Glastok. {t(lang, 'footer.rights')}
-        </p>
+        <div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-3">
+          <p class="footer-copyright">
+            &copy; {currentYear} Glastok. {t(lang, 'footer.rights')}
+          </p>
+          <span class="hidden sm:block footer-divider" aria-hidden="true"></span>
+          <a href="https://mfsyazilim.com" target="_blank" rel="noopener noreferrer" class="footer-bottom-link hover:text-brand-primary">
+            {t(lang, 'footer.mfs')}
+          </a>
+        </div>
 
         <!-- Bottom links -->
         <nav class="flex items-center gap-5" aria-label="Footer legal navigation">
-          <a href="#" class="footer-bottom-link">{t(lang, 'footer.privacy')}</a>
+          <a href={`${p}/privacy/`} class="footer-bottom-link">{t(lang, 'footer.privacy')}</a>
           <span class="footer-divider" aria-hidden="true"></span>
-          <a href="#" class="footer-bottom-link">{t(lang, 'footer.terms')}</a>
+          <a href={`${p}/terms/`} class="footer-bottom-link">{t(lang, 'footer.terms')}</a>
           <span class="footer-divider" aria-hidden="true"></span>
           <a href="#contact" class="footer-bottom-link">{t(lang, 'nav.contact')}</a>
         </nav>

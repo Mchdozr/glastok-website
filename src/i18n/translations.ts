@@ -140,6 +140,68 @@ export const translations = {
     "footer.privacy": "Privacy Policy",
     "footer.terms": "Terms of Service",
     "footer.rights": "All rights reserved.",
+    "footer.mfs": "A product of MFS Yazılım",
+
+    // Subpages
+    "about.title": "About Glastok",
+    "about.subtitle":
+      "Modern inventory management, built for growing businesses.",
+    "about.mission.title": "Our Mission",
+    "about.mission.desc":
+      "We believe every business deserves powerful, intuitive inventory management tools. Glastok was built to replace complex spreadsheets and outdated systems with a modern, real-time platform that scales with your business.",
+    "about.story.title": "Our Story",
+    "about.story.desc":
+      "Glastok started as an internal tool to solve real inventory tracking challenges. After seeing how much it improved operations, we decided to make it available to businesses of all sizes. Today, Glastok helps companies track thousands of products across multiple warehouses with complete visibility and control.",
+    "about.values.title": "What We Value",
+    "about.values.simplicity": "Simplicity",
+    "about.values.simplicityDesc":
+      "Complex problems, simple solutions. Every feature is designed to be intuitive from day one.",
+    "about.values.reliability": "Reliability",
+    "about.values.reliabilityDesc":
+      "99.9% uptime guarantee. Your inventory data is always available when you need it.",
+    "about.values.security": "Security",
+    "about.values.securityDesc":
+      "Enterprise-grade security with JWT authentication, complete audit trails, and granular permissions.",
+    "about.values.speed": "Speed",
+    "about.values.speedDesc":
+      "Real-time updates across all warehouses. No delays, no sync issues, no surprises.",
+    "about.cta": "Ready to get started?",
+    "about.ctaBtn": "Request a Demo",
+
+    "careers.title": "Join Our Team",
+    "careers.subtitle": "Help us build the future of inventory management.",
+    "careers.noOpenings": "No Open Positions",
+    "careers.noOpeningsDesc":
+      "We don't have any open positions right now, but we're always looking for talented people. Send us your CV and we'll keep you in mind for future opportunities.",
+    "careers.sendCv": "Send Your CV",
+    "careers.perks.title": "Why Work With Us",
+    "careers.perks.remote": "Remote First",
+    "careers.perks.remoteDesc":
+      "Work from anywhere. We believe great work happens when you're comfortable.",
+    "careers.perks.growth": "Growth",
+    "careers.perks.growthDesc":
+      "Learn and grow with a team that values continuous improvement.",
+    "careers.perks.impact": "Real Impact",
+    "careers.perks.impactDesc":
+      "Your work directly shapes a product used by real businesses every day.",
+
+    "blog.title": "Blog",
+    "blog.subtitle":
+      "Insights on inventory management, product updates, and industry trends.",
+    "blog.comingSoon": "Coming Soon",
+    "blog.comingSoonDesc":
+      "We're working on our first articles. Stay tuned for insights on inventory management best practices, product updates, and industry news.",
+    "blog.notify": "Get Notified",
+
+    "privacy.title": "Privacy Policy",
+    "privacy.lastUpdated": "Last updated",
+    "privacy.date": "April 2025",
+
+    "terms.title": "Terms of Service",
+    "terms.lastUpdated": "Last updated",
+    "terms.date": "April 2025",
+
+    "subpage.backHome": "Back to Home",
   },
   tr: {
     // Nav
@@ -275,6 +337,67 @@ export const translations = {
     "footer.privacy": "Gizlilik Politikası",
     "footer.terms": "Kullanım Koşulları",
     "footer.rights": "Tüm hakları saklıdır.",
+    "footer.mfs": "Bir MFS Yazılım ürünüdür",
+
+    // Subpages
+    "about.title": "Glastok Hakkında",
+    "about.subtitle": "Büyüyen işletmeler için modern envanter yönetimi.",
+    "about.mission.title": "Misyonumuz",
+    "about.mission.desc":
+      "Her işletmenin güçlü ve kullanımı kolay envanter yönetim araçlarını hak ettiğine inanıyoruz. Glastok, karmaşık tablolar ve eski sistemlerin yerini alan, işletmenizle birlikte büyüyen modern ve anlık bir platform olarak inşa edildi.",
+    "about.story.title": "Hikayemiz",
+    "about.story.desc":
+      "Glastok, gerçek envanter takibi zorluklarını çözmek için dahili bir araç olarak başladı. Operasyonları ne kadar iyileştirdiğini gördükten sonra, her ölçekte işletmeye sunmaya karar verdik. Bugün Glastok, şirketlerin birden fazla depoda binlerce ürünü tam görünürlük ve kontrol ile takip etmesine yardımcı oluyor.",
+    "about.values.title": "Değerlerimiz",
+    "about.values.simplicity": "Sadelik",
+    "about.values.simplicityDesc":
+      "Karmaşık sorunlar, basit çözümler. Her özellik ilk günden sezgisel olacak şekilde tasarlandı.",
+    "about.values.reliability": "Güvenilirlik",
+    "about.values.reliabilityDesc":
+      "%99.9 çalışma süresi garantisi. Envanter verileriniz her zaman ihtiyacınız olduğunda erişilebilir.",
+    "about.values.security": "Güvenlik",
+    "about.values.securityDesc":
+      "JWT kimlik doğrulama, tam denetim izi ve granüler izinlerle kurumsal düzey güvenlik.",
+    "about.values.speed": "Hız",
+    "about.values.speedDesc":
+      "Tüm depolarda anlık güncellemeler. Gecikme yok, senkronizasyon sorunu yok, sürpriz yok.",
+    "about.cta": "Başlamaya hazır mısınız?",
+    "about.ctaBtn": "Demo Talep Et",
+
+    "careers.title": "Ekibimize Katılın",
+    "careers.subtitle": "Envanter yönetiminin geleceğini birlikte inşa edelim.",
+    "careers.noOpenings": "Açık Pozisyon Yok",
+    "careers.noOpeningsDesc":
+      "Şu anda açık pozisyonumuz yok, ancak yetenekli insanları her zaman arıyoruz. CV'nizi gönderin, gelecek fırsatlar için sizi aklımızda tutalım.",
+    "careers.sendCv": "CV Gönder",
+    "careers.perks.title": "Neden Bizimle Çalışmalısınız",
+    "careers.perks.remote": "Uzaktan Çalışma",
+    "careers.perks.remoteDesc":
+      "İstediğiniz yerden çalışın. Harika işlerin rahat olduğunuzda ortaya çıktığına inanıyoruz.",
+    "careers.perks.growth": "Gelişim",
+    "careers.perks.growthDesc":
+      "Sürekli gelişime değer veren bir ekiple öğrenin ve büyüyün.",
+    "careers.perks.impact": "Gerçek Etki",
+    "careers.perks.impactDesc":
+      "Çalışmanız her gün gerçek işletmeler tarafından kullanılan bir ürünü doğrudan şekillendiriyor.",
+
+    "blog.title": "Blog",
+    "blog.subtitle":
+      "Envanter yönetimi, ürün güncellemeleri ve sektör trendleri hakkında içerikler.",
+    "blog.comingSoon": "Çok Yakında",
+    "blog.comingSoonDesc":
+      "İlk makalelerimiz üzerinde çalışıyoruz. Envanter yönetimi en iyi uygulamaları, ürün güncellemeleri ve sektör haberleri için bizi takip edin.",
+    "blog.notify": "Haberdar Ol",
+
+    "privacy.title": "Gizlilik Politikası",
+    "privacy.lastUpdated": "Son güncelleme",
+    "privacy.date": "Nisan 2025",
+
+    "terms.title": "Kullanım Koşulları",
+    "terms.lastUpdated": "Son güncelleme",
+    "terms.date": "Nisan 2025",
+
+    "subpage.backHome": "Ana Sayfaya Dön",
   },
 } as const;
 
