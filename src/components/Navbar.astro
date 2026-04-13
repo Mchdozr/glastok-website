@@ -1,0 +1,164 @@
+---
+import { t } from '../i18n/translations';
+import type { TranslationKey } from '../i18n/translations';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const otherLang = lang === 'en' ? 'tr' : 'en';
+const otherLangPath = lang === 'en' ? '/tr' : '/';
+
+const navLinks = [
+  { href: '#features', label: t(lang, 'nav.features') },
+  { href: '#how-it-works', label: t(lang, 'nav.howItWorks') },
+  { href: '#demo', label: t(lang, 'nav.demo') },
+  { href: '#contact', label: t(lang, 'nav.contact') },
+];
+---
+
+<!-- Tailwind purge safelist (hidden, never rendered) -->
+<span class="hidden nav-blur border-dark-border"></span>
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href={lang === 'en' ? '/' : '/tr'} class="flex items-center gap-3 group">
+        <div class="w-9 h-9 bg-brand-primary rounded-md flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-110">
+          <img src="/logo.png" alt="Glastok" class="w-7 h-7 object-contain" />
+        </div>
+        <span class="font-heading font-bold text-base tracking-[3px] uppercase text-dark-text">
+          GLASTOK
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center gap-8">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="font-heading text-[11px] font-semibold tracking-[2px] uppercase text-dark-text-muted hover:text-brand-primary transition-colors duration-300"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <!-- Right side -->
+      <div class="hidden lg:flex items-center gap-4">
+        <a
+          href={otherLangPath}
+          class="w-10 h-10 flex items-center justify-center border border-dark-border-light text-dark-text-muted font-heading text-xs font-bold tracking-wider hover:border-brand-primary hover:text-brand-primary transition-all duration-300"
+        >
+          {t(lang, 'nav.language')}
+        </a>
+        <a href="#contact" class="btn-primary !py-3 !px-6 !text-xs">
+          {t(lang, 'nav.requestDemo')}
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button
+        id="menu-toggle"
+        class="lg:hidden w-10 h-10 flex items-center justify-center border border-dark-border-light text-dark-text-muted hover:border-brand-primary hover:text-brand-primary transition-all duration-300"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg id="menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile overlay -->
+  <div id="mobile-menu" class="lg:hidden fixed inset-0 top-20 bg-dark-bg/95 backdrop-blur-xl -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+    <div class="flex flex-col items-center justify-center h-full gap-8 pb-20">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="mobile-nav-link font-heading text-2xl font-bold tracking-[4px] uppercase text-dark-text-muted hover:text-brand-primary transition-colors duration-300"
+        >
+          {link.label}
+        </a>
+      ))}
+      <div class="flex items-center gap-4 mt-4">
+        <a
+          href={otherLangPath}
+          class="w-12 h-12 flex items-center justify-center border border-dark-border-light text-dark-text-muted font-heading text-sm font-bold tracking-wider hover:border-brand-primary hover:text-brand-primary transition-all duration-300"
+        >
+          {t(lang, 'nav.language')}
+        </a>
+        <a href="#contact" class="btn-primary">
+          {t(lang, 'nav.requestDemo')}
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  let lastScroll = 0;
+  let isMenuOpen = false;
+
+  // Scroll behavior
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+
+    if (navbar) {
+      if (currentScroll > 50) {
+        navbar.classList.add('nav-blur', 'border-b', 'border-dark-border');
+      } else {
+        navbar.classList.remove('nav-blur', 'border-b', 'border-dark-border');
+      }
+
+      // Hide/show on scroll direction
+      if (currentScroll > 300 && !isMenuOpen) {
+        if (currentScroll > lastScroll) {
+          navbar.style.transform = 'translateY(-100%)';
+        } else {
+          navbar.style.transform = 'translateY(0)';
+        }
+      }
+    }
+
+    lastScroll = currentScroll;
+  });
+
+  const closeMenu = () => {
+    isMenuOpen = false;
+    if (mobileMenu) mobileMenu.style.transform = 'translateX(-100%)';
+    menuIcon?.classList.remove('hidden');
+    closeIcon?.classList.add('hidden');
+    menuToggle?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+
+  // Mobile menu toggle
+  menuToggle?.addEventListener('click', () => {
+    isMenuOpen = !isMenuOpen;
+    if (mobileMenu) {
+      mobileMenu.style.transform = isMenuOpen ? 'translateX(0)' : 'translateX(-100%)';
+    }
+    menuIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+    menuToggle.setAttribute('aria-expanded', String(isMenuOpen));
+    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>

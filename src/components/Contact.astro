@@ -1,0 +1,554 @@
+---
+import { t } from '../i18n/translations';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const today = new Date().toISOString().split('T')[0];
+---
+
+<section id="contact" class="relative py-24 md:py-32 overflow-hidden">
+  <!-- Background grid -->
+  <div class="absolute inset-0 grid-bg opacity-30 pointer-events-none"></div>
+  <!-- Subtle radial glow -->
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 60% 40% at 80% 50%, rgba(255,214,0,0.03) 0%, transparent 70%);"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+
+    <!-- Section header -->
+    <div class="text-center mb-16 reveal">
+      <span class="label-tag block mb-4">{t(lang, 'contact.tag')}</span>
+      <h2 class="heading-lg text-4xl md:text-5xl text-[var(--color-dark-text)]">
+        {t(lang, 'contact.title')} <span class="text-[var(--color-brand-primary)]">{t(lang, 'contact.titleHighlight')}</span>
+      </h2>
+      <p class="mt-4 text-base max-w-xl mx-auto" style="color: var(--color-dark-text-muted); font-family: var(--font-body);">
+        {t(lang, 'contact.subtitle')}
+      </p>
+    </div>
+
+    <!-- Two-column layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+
+      <!-- ===== LEFT: Contact info ===== -->
+      <div class="space-y-8 reveal reveal-delay-1">
+
+        <!-- Info items -->
+        <div class="space-y-5">
+
+          <!-- Email -->
+          <div class="flex items-start gap-4 group">
+            <div class="contact-icon-wrap shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="contact-info-label">Email</p>
+              <a href={`mailto:${t(lang, 'contact.info.email')}`} class="contact-info-value group-hover:text-[var(--color-brand-primary)] transition-colors">
+                {t(lang, 'contact.info.email')}
+              </a>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="flex items-start gap-4 group">
+            <div class="contact-icon-wrap shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="contact-info-label">Phone</p>
+              <a href={`tel:${t(lang, 'contact.info.phone').replace(/\s|\(|\)|-/g, '')}`} class="contact-info-value group-hover:text-[var(--color-brand-primary)] transition-colors">
+                {t(lang, 'contact.info.phone')}
+              </a>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="flex items-start gap-4 group">
+            <div class="contact-icon-wrap shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="contact-info-label">Location</p>
+              <p class="contact-info-value">{t(lang, 'contact.info.address')}</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Decorative dot grid -->
+        <div class="relative overflow-hidden rounded-xl border border-[var(--color-dark-border)] bg-[var(--color-dark-surface)] p-8 mt-4" aria-hidden="true">
+          <!-- Dot grid pattern -->
+          <div class="contact-dot-grid"></div>
+          <!-- Overlay content -->
+          <div class="relative z-10">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="glow-dot rounded-full"></div>
+              <span style="font-family: var(--font-heading); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--color-brand-primary);">{t(lang, 'contact.response.title')}</span>
+            </div>
+            <p style="font-family: var(--font-body); font-size: 14px; color: var(--color-dark-text-muted); line-height: 1.6; max-width: 280px;">
+              {t(lang, 'contact.response.desc')}
+            </p>
+            <!-- Abstract lines decoration -->
+            <div class="contact-lines-deco mt-6"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===== RIGHT: Form ===== -->
+      <div class="reveal reveal-delay-2">
+        <div class="glass-card p-7 md:p-8 border border-[var(--color-dark-border-light)]">
+
+          <!-- Mode toggle: Contact / Demo -->
+          <div class="flex gap-0 mb-7 p-1 rounded-lg border border-[var(--color-dark-border)] bg-[var(--color-dark-bg)]" role="tablist" aria-label="Form mode" id="contact-modelist">
+            <button
+              class="contact-mode-tab active"
+              role="tab"
+              aria-selected="true"
+              id="mode-contact"
+              data-mode="contact"
+              type="button"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+              {t(lang, 'contact.tab.contact')}
+            </button>
+            <button
+              class="contact-mode-tab"
+              role="tab"
+              aria-selected="false"
+              id="mode-demo"
+              data-mode="demo"
+              type="button"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              {t(lang, 'contact.tab.demo')}
+            </button>
+          </div>
+
+          <!-- Contact Form -->
+          <form
+            id="contact-form"
+            action="#"
+            method="POST"
+            novalidate
+            aria-label="Contact form"
+            class="contact-form space-y-5"
+            data-form-mode="contact"
+            data-error-required={t(lang, 'contact.form.errorRequired')}
+            data-error-email={t(lang, 'contact.form.errorEmail')}
+          >
+
+            <!-- Full Name -->
+            <div class="form-field">
+              <label for="cf-name" class="form-label">
+                {t(lang, 'contact.form.name')}
+                <span class="form-required" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="cf-name"
+                name="name"
+                class="form-input"
+                placeholder="John Doe"
+                required
+                autocomplete="name"
+                aria-required="true"
+              />
+              <span class="form-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Email -->
+            <div class="form-field">
+              <label for="cf-email" class="form-label">
+                {t(lang, 'contact.form.email')}
+                <span class="form-required" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="email"
+                id="cf-email"
+                name="email"
+                class="form-input"
+                placeholder="john@company.com"
+                required
+                autocomplete="email"
+                aria-required="true"
+              />
+              <span class="form-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Company Name -->
+            <div class="form-field">
+              <label for="cf-company" class="form-label">{t(lang, 'contact.form.company')}</label>
+              <input
+                type="text"
+                id="cf-company"
+                name="company"
+                class="form-input"
+                placeholder="Acme Corp."
+                autocomplete="organization"
+              />
+            </div>
+
+            <!-- Phone (demo mode only) -->
+            <div class="form-field" id="cf-phone-field" style="display: none;">
+              <label for="cf-phone" class="form-label">{t(lang, 'contact.form.phone')}</label>
+              <input
+                type="tel"
+                id="cf-phone"
+                name="phone"
+                class="form-input"
+                placeholder="+90 555 000 00 00"
+                autocomplete="tel"
+              />
+            </div>
+
+            <!-- Message (contact mode) -->
+            <div class="form-field" id="cf-message-field">
+              <label for="cf-message" class="form-label">{t(lang, 'contact.form.message')}</label>
+              <textarea
+                id="cf-message"
+                name="message"
+                class="form-input form-textarea"
+                placeholder="Tell us about your needs..."
+                rows="4"
+              ></textarea>
+            </div>
+
+            <!-- Preferred demo date (demo mode only) -->
+            <div class="form-field" id="cf-demodate-field" style="display: none;">
+              <label for="cf-demodate" class="form-label">{t(lang, 'contact.form.demoDate')}</label>
+              <input
+                type="date"
+                id="cf-demodate"
+                name="demo_date"
+                class="form-input"
+                min={today}
+              />
+            </div>
+
+            <!-- Request demo checkbox (contact mode) -->
+            <div id="cf-checkbox-field" class="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="cf-demo-check"
+                name="request_demo"
+                class="form-checkbox"
+              />
+              <label for="cf-demo-check" class="form-checkbox-label">{t(lang, 'contact.form.demo')}</label>
+            </div>
+
+            <!-- Submit button -->
+            <button
+              type="submit"
+              class="btn-primary w-full justify-center mt-2"
+              id="cf-submit"
+            >
+              <span id="cf-submit-text" data-contact={t(lang, 'contact.form.submit')} data-demo={t(lang, 'contact.form.submitDemo')}>{t(lang, 'contact.form.submit')}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+
+            <!-- Success message (hidden by default) -->
+            <div id="cf-success" class="form-success" aria-live="polite" style="display: none;">
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>{t(lang, 'contact.success')}</span>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ===== INFO ===== */
+  .contact-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(255,214,0,0.08);
+    border: 1px solid rgba(255,214,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-brand-primary);
+    transition: all 0.3s;
+  }
+  .group:hover .contact-icon-wrap {
+    background: rgba(255,214,0,0.15);
+    border-color: rgba(255,214,0,0.3);
+  }
+  .contact-info-label {
+    font-family: var(--font-heading);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-dark-text-dim);
+    margin-bottom: 3px;
+  }
+  .contact-info-value {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-dark-text);
+    text-decoration: none;
+  }
+
+  /* Dot grid decoration */
+  .contact-dot-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  .contact-lines-deco {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .contact-lines-deco::before,
+  .contact-lines-deco::after {
+    content: '';
+    display: block;
+    height: 1px;
+    border-radius: 99px;
+  }
+  .contact-lines-deco::before {
+    width: 100%;
+    background: linear-gradient(90deg, var(--color-brand-primary) 0%, transparent 70%);
+    opacity: 0.4;
+  }
+  .contact-lines-deco::after {
+    width: 60%;
+    background: linear-gradient(90deg, var(--color-brand-primary) 0%, transparent 70%);
+    opacity: 0.2;
+  }
+
+  /* ===== MODE TABS ===== */
+  .contact-mode-tab {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 16px;
+    border-radius: 7px;
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--color-dark-text-muted);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .contact-mode-tab:hover { color: var(--color-dark-text); }
+  .contact-mode-tab.active {
+    background: var(--color-dark-surface-alt);
+    color: var(--color-brand-primary);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+
+  /* ===== FORM FIELDS ===== */
+  .form-label {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-dark-text-muted);
+    margin-bottom: 6px;
+  }
+  .form-required {
+    color: var(--color-danger);
+    margin-left: 2px;
+  }
+  .form-input {
+    width: 100%;
+    background: var(--color-dark-surface-alt);
+    border: 1px solid var(--color-dark-border);
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-dark-text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .form-input::placeholder { color: var(--color-dark-text-dim); }
+  .form-input:focus {
+    border-color: var(--color-brand-primary);
+    box-shadow: 0 0 0 3px rgba(255,214,0,0.08);
+  }
+  .form-input:invalid:not(:placeholder-shown) {
+    border-color: var(--color-danger);
+  }
+  .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.6;
+  }
+  /* Date input color fix for dark */
+  input[type="date"].form-input::-webkit-calendar-picker-indicator {
+    filter: invert(0.5);
+    cursor: pointer;
+  }
+
+  .form-error {
+    display: block;
+    font-size: 11px;
+    color: var(--color-danger);
+    margin-top: 4px;
+    min-height: 16px;
+    font-family: var(--font-body);
+  }
+
+  .form-checkbox {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--color-dark-border-light);
+    border-radius: 5px;
+    background: var(--color-dark-surface-alt);
+    cursor: pointer;
+    accent-color: var(--color-brand-primary);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .form-checkbox-label {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--color-dark-text-muted);
+    cursor: pointer;
+    line-height: 1.4;
+    user-select: none;
+  }
+  .form-checkbox:checked + .form-checkbox-label { color: var(--color-dark-text); }
+
+  /* Success banner */
+  .form-success {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    border-radius: 8px;
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.25);
+    color: var(--color-success);
+    font-family: var(--font-body);
+    font-size: 13px;
+  }
+
+  /* Invalid field highlight */
+  .form-field.invalid .form-input {
+    border-color: var(--color-danger) !important;
+  }
+</style>
+
+<script>
+  (function() {
+    const modelist = document.getElementById('contact-modelist');
+    if (!modelist) return;
+
+    const modeTabs     = modelist.querySelectorAll<HTMLButtonElement>('.contact-mode-tab');
+    const form         = document.getElementById('contact-form') as HTMLFormElement | null;
+    const phoneField   = document.getElementById('cf-phone-field') as HTMLElement | null;
+    const msgField     = document.getElementById('cf-message-field') as HTMLElement | null;
+    const dateField    = document.getElementById('cf-demodate-field') as HTMLElement | null;
+    const checkField   = document.getElementById('cf-checkbox-field') as HTMLElement | null;
+    const submitText   = document.getElementById('cf-submit-text') as HTMLElement | null;
+    const successMsg   = document.getElementById('cf-success') as HTMLElement | null;
+    const submitBtn    = document.getElementById('cf-submit') as HTMLButtonElement | null;
+
+    const TEXT_CONTACT = submitText?.dataset.contact || 'Send Message';
+    const TEXT_DEMO    = submitText?.dataset.demo    || 'Request Demo';
+    const ERR_REQUIRED = form?.dataset.errorRequired || 'This field is required.';
+    const ERR_EMAIL    = form?.dataset.errorEmail    || 'Please enter a valid email.';
+
+    function switchMode(mode: string) {
+      modeTabs.forEach(t => {
+        t.classList.toggle('active', t.dataset.mode === mode);
+        t.setAttribute('aria-selected', t.dataset.mode === mode ? 'true' : 'false');
+      });
+
+      const isDemo = mode === 'demo';
+      if (phoneField)  phoneField.style.display  = isDemo ? '' : 'none';
+      if (msgField)    msgField.style.display     = isDemo ? 'none' : '';
+      if (dateField)   dateField.style.display    = isDemo ? '' : 'none';
+      if (checkField)  checkField.style.display   = isDemo ? 'none' : '';
+      if (submitText)  submitText.textContent      = isDemo ? TEXT_DEMO : TEXT_CONTACT;
+
+      // Set today as min date for demo date
+      const dateInput = document.getElementById('cf-demodate') as HTMLInputElement | null;
+      if (dateInput && isDemo) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.min = today;
+      }
+    }
+
+    modeTabs.forEach(tab => {
+      tab.addEventListener('click', () => switchMode(tab.dataset.mode ?? 'contact'));
+    });
+
+    // Form validation + submission
+    if (form) {
+      form.addEventListener('submit', (e: Event) => {
+        e.preventDefault();
+
+        let valid = true;
+        const required = form.querySelectorAll<HTMLInputElement>('[required]');
+
+        required.forEach(field => {
+          const wrapper = field.closest('.form-field');
+          const errorEl = wrapper?.querySelector<HTMLSpanElement>('.form-error');
+          if (!field.value.trim()) {
+            valid = false;
+            wrapper?.classList.add('invalid');
+            if (errorEl) errorEl.textContent = ERR_REQUIRED;
+          } else if (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
+            valid = false;
+            wrapper?.classList.add('invalid');
+            if (errorEl) errorEl.textContent = ERR_EMAIL;
+          } else {
+            wrapper?.classList.remove('invalid');
+            if (errorEl) errorEl.textContent = '';
+          }
+        });
+
+        if (!valid) return;
+
+        // Simulate submit
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.style.opacity = '0.7'; }
+        setTimeout(() => {
+          form.style.display = 'none';
+          if (successMsg) successMsg.style.display = 'flex';
+        }, 600);
+      });
+
+      // Real-time validation clear
+      form.querySelectorAll<HTMLInputElement>('.form-input').forEach(field => {
+        field.addEventListener('input', () => {
+          const wrapper = field.closest('.form-field');
+          const errorEl = wrapper?.querySelector<HTMLSpanElement>('.form-error');
+          if (field.value.trim()) {
+            wrapper?.classList.remove('invalid');
+            if (errorEl) errorEl.textContent = '';
+          }
+        });
+      });
+    }
+  })();
+</script>

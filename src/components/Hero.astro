@@ -1,0 +1,268 @@
+---
+import { t } from '../i18n/translations';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+---
+
+<section
+  id="hero"
+  class="hero grid-bg relative flex min-h-screen flex-col overflow-hidden"
+  aria-label="Hero section"
+>
+  <!-- Radial glow: golden from center-top -->
+  <div
+    class="pointer-events-none absolute inset-0 z-0"
+    style="background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255,214,0,0.08) 0%, rgba(255,214,0,0.02) 40%, transparent 70%);"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Large "G" watermark -->
+  <div
+    class="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden"
+    aria-hidden="true"
+  >
+    <span
+      class="select-none"
+      style="font-family: var(--font-heading); font-size: clamp(320px, 55vw, 700px); font-weight: 900; color: transparent; -webkit-text-stroke: 1px rgba(255,214,0,0.04); letter-spacing: -0.05em; transform: translateY(-8%); line-height: 1;"
+    >G</span>
+  </div>
+
+  <!-- Decorative thin horizontal lines -->
+  <div class="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+    <div class="absolute top-[18%] left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 30%, rgba(255,214,0,0.06) 50%, rgba(255,255,255,0.04) 70%, transparent 100%);"></div>
+    <div class="absolute top-[82%] left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 30%, rgba(255,214,0,0.04) 50%, rgba(255,255,255,0.04) 70%, transparent 100%);"></div>
+  </div>
+
+  <!-- Decorative thin vertical lines -->
+  <div class="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+    <div class="absolute top-0 bottom-0 left-[12%] w-px" style="background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.03) 30%, rgba(255,214,0,0.05) 55%, rgba(255,255,255,0.03) 80%, transparent 100%);"></div>
+    <div class="absolute top-0 bottom-0 right-[12%] w-px" style="background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.03) 30%, rgba(255,214,0,0.05) 55%, rgba(255,255,255,0.03) 80%, transparent 100%);"></div>
+  </div>
+
+  <!-- Floating glow dots -->
+  <div class="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+    <div class="glow-dot absolute" style="top: 14%; left: 8%;"></div>
+    <div class="glow-dot absolute" style="top: 22%; left: 14%; opacity: 0.5; width: 4px; height: 4px;"></div>
+    <div class="glow-dot absolute" style="top: 9%; left: 23%; opacity: 0.3; width: 3px; height: 3px;"></div>
+    <div class="glow-dot absolute" style="top: 31%; left: 6%; opacity: 0.4; width: 5px; height: 5px;"></div>
+    <div class="glow-dot absolute" style="top: 18%; right: 9%; opacity: 0.6;"></div>
+    <div class="glow-dot absolute" style="top: 38%; right: 6%; opacity: 0.35; width: 4px; height: 4px;"></div>
+    <div class="glow-dot absolute" style="top: 12%; right: 19%; opacity: 0.25; width: 3px; height: 3px;"></div>
+    <div class="glow-dot absolute" style="top: 55%; right: 11%; opacity: 0.45; width: 5px; height: 5px;"></div>
+    <div class="glow-dot absolute" style="top: 48%; left: 4%; opacity: 0.5;"></div>
+    <div class="glow-dot absolute" style="top: 62%; left: 9%; opacity: 0.3; width: 4px; height: 4px;"></div>
+    <div class="glow-dot absolute" style="top: 72%; left: 18%; opacity: 0.35; width: 3px; height: 3px;"></div>
+    <div class="glow-dot absolute" style="top: 78%; right: 22%; opacity: 0.4; width: 4px; height: 4px;"></div>
+    <div class="glow-dot absolute" style="top: 68%; right: 8%; opacity: 0.3; width: 3px; height: 3px;"></div>
+  </div>
+
+  <!-- ======== MAIN CONTENT ======== -->
+  <div class="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-32 text-center">
+
+    <!-- Label tag -->
+    <div class="reveal mb-8 inline-flex items-center gap-3">
+      <div class="h-px w-8" style="background: var(--color-brand-primary); opacity: 0.7;"></div>
+      <span class="label-tag">{t(lang, 'hero.tag')}</span>
+      <div class="h-px w-8" style="background: var(--color-brand-primary); opacity: 0.7;"></div>
+    </div>
+
+    <!-- Main heading -->
+    <h1 class="heading-xl reveal reveal-delay-1 mx-auto mb-6 max-w-4xl" style="font-size: clamp(2.5rem, 7vw, 4.5rem);">
+      <span style="color: var(--color-dark-text);">{t(lang, 'hero.title.line1')}</span>
+      <br />
+      <span style="color: var(--color-brand-primary);">{t(lang, 'hero.title.highlight')}</span>
+      <br />
+      <span style="color: var(--color-dark-text);">{t(lang, 'hero.title.line2')}</span>
+    </h1>
+
+    <!-- Subtitle -->
+    <p
+      class="reveal reveal-delay-2 mx-auto mb-10 max-w-2xl text-base leading-relaxed md:text-lg"
+      style="color: var(--color-dark-text-muted);"
+    >
+      {t(lang, 'hero.subtitle')}
+    </p>
+
+    <!-- CTA buttons -->
+    <div class="reveal reveal-delay-3 flex flex-wrap items-center justify-center gap-4">
+      <a href="#contact" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+        {t(lang, 'hero.cta.primary')}
+      </a>
+      <a href="#features" class="btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+        {t(lang, 'hero.cta.secondary')}
+      </a>
+    </div>
+
+    <!-- Corner bracket decorations flanking the CTA area -->
+    <div class="reveal reveal-delay-3 pointer-events-none relative mt-10 hidden md:block" aria-hidden="true">
+      <div class="absolute -left-16 -top-6 h-6 w-6 border-l-2 border-t-2" style="border-color: rgba(255,214,0,0.25);"></div>
+      <div class="absolute -right-16 -top-6 h-6 w-6 border-r-2 border-t-2" style="border-color: rgba(255,214,0,0.25);"></div>
+    </div>
+  </div>
+
+  <!-- ======== STATS BAR ======== -->
+  <div
+    class="reveal reveal-delay-4 relative z-10 w-full border-t"
+    style="border-color: var(--color-dark-border-light);"
+  >
+    <!-- Thin gold accent line on top of bar -->
+    <div class="absolute -top-px left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent 0%, rgba(255,214,0,0.3) 30%, rgba(255,214,0,0.6) 50%, rgba(255,214,0,0.3) 70%, transparent 100%);"></div>
+
+    <div class="stagger-children mx-auto grid max-w-5xl grid-cols-2 md:grid-cols-4">
+
+      <!-- Stat: Products Tracked -->
+      <div
+        class="stat-item group relative flex flex-col items-center justify-center px-6 py-8 transition-colors duration-300"
+        style="border-right: 1px solid var(--color-dark-border-light);"
+      >
+        <div class="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style="background: linear-gradient(180deg, rgba(255,214,0,0.03) 0%, transparent 100%);"></div>
+        <span
+          class="stat-number heading-lg mb-1 text-3xl md:text-4xl"
+          style="color: var(--color-brand-primary);"
+          data-counter="10000"
+          data-suffix="+"
+        >10K+</span>
+        <span class="label-tag" style="color: var(--color-dark-text-muted); font-size: 10px; letter-spacing: 2px;">
+          {t(lang, 'hero.stats.products')}
+        </span>
+      </div>
+
+      <!-- Stat: Multi-Warehouse -->
+      <div
+        class="stat-item group relative flex flex-col items-center justify-center px-6 py-8 transition-colors duration-300"
+        style="border-right: 1px solid var(--color-dark-border-light);"
+      >
+        <div class="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style="background: linear-gradient(180deg, rgba(255,214,0,0.03) 0%, transparent 100%);"></div>
+        <span
+          class="stat-number heading-lg mb-1 text-3xl md:text-4xl"
+          style="color: var(--color-brand-primary);"
+          data-counter="infinity"
+        >&#8734;</span>
+        <span class="label-tag" style="color: var(--color-dark-text-muted); font-size: 10px; letter-spacing: 2px;">
+          {t(lang, 'hero.stats.warehouses')}
+        </span>
+      </div>
+
+      <!-- Stat: Uptime -->
+      <div
+        class="stat-item group relative flex flex-col items-center justify-center px-6 py-8 transition-colors duration-300"
+        style="border-right: 1px solid var(--color-dark-border-light);"
+      >
+        <div
+          class="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          style="background: linear-gradient(180deg, rgba(255,214,0,0.03) 0%, transparent 100%);"
+        ></div>
+        <span
+          class="stat-number heading-lg mb-1 text-3xl md:text-4xl"
+          style="color: var(--color-brand-primary);"
+          data-counter="99.9"
+          data-suffix="%"
+        >99.9%</span>
+        <span class="label-tag" style="color: var(--color-dark-text-muted); font-size: 10px; letter-spacing: 2px;">
+          {t(lang, 'hero.stats.uptime')}
+        </span>
+      </div>
+
+      <!-- Stat: Stock Movements -->
+      <div
+        class="stat-item group relative flex flex-col items-center justify-center px-6 py-8 transition-colors duration-300"
+      >
+        <div class="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style="background: linear-gradient(180deg, rgba(255,214,0,0.03) 0%, transparent 100%);"></div>
+        <span
+          class="stat-number heading-lg mb-1 text-3xl md:text-4xl"
+          style="color: var(--color-brand-primary);"
+          data-counter="50000"
+          data-suffix="+"
+        >50K+</span>
+        <span class="label-tag" style="color: var(--color-dark-text-muted); font-size: 10px; letter-spacing: 2px;">
+          {t(lang, 'hero.stats.movements')}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== SCROLL INDICATOR ======== -->
+  <div
+    class="pointer-events-none absolute bottom-6 left-1/2 z-10 -translate-x-1/2"
+    role="presentation"
+  >
+    <div class="flex flex-col items-center gap-1">
+      <span style="font-family: var(--font-heading); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--color-dark-text-dim);">SCROLL</span>
+      <svg
+        class="scroll-chevron-icon"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="square"
+        aria-hidden="true"
+        style="color: var(--color-dark-text-dim);"
+      >
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ---- Stats bar border normalization ---- */
+  @media (max-width: 767px) {
+    .stat-item:nth-child(2) {
+      border-right: none !important;
+    }
+    .stat-item:nth-child(3),
+    .stat-item:nth-child(4) {
+      border-top: 1px solid var(--color-dark-border-light) !important;
+    }
+    .stat-item:nth-child(4) {
+      border-right: none !important;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .stat-item:last-child {
+      border-right: none !important;
+    }
+  }
+
+  /* Chevron bob */
+  @keyframes chevron-bob {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50%       { transform: translateY(6px); opacity: 0.9; }
+  }
+  .scroll-chevron-icon {
+    animation: chevron-bob 2s ease-in-out infinite;
+  }
+
+  /* Glow dot pulse */
+  @keyframes dot-pulse {
+    0%, 100% { box-shadow: 0 0 6px rgba(255, 214, 0, 0.35); }
+    50%       { box-shadow: 0 0 16px rgba(255, 214, 0, 0.7); }
+  }
+  .glow-dot { animation: dot-pulse 3s ease-in-out infinite; }
+  .glow-dot:nth-child(2)  { animation-delay: 0.4s; }
+  .glow-dot:nth-child(3)  { animation-delay: 0.8s; }
+  .glow-dot:nth-child(4)  { animation-delay: 1.2s; }
+  .glow-dot:nth-child(5)  { animation-delay: 0.6s; }
+  .glow-dot:nth-child(6)  { animation-delay: 1.0s; }
+  .glow-dot:nth-child(7)  { animation-delay: 1.5s; }
+  .glow-dot:nth-child(8)  { animation-delay: 0.2s; }
+  .glow-dot:nth-child(9)  { animation-delay: 1.8s; }
+  .glow-dot:nth-child(10) { animation-delay: 0.9s; }
+  .glow-dot:nth-child(11) { animation-delay: 2.1s; }
+  .glow-dot:nth-child(12) { animation-delay: 0.3s; }
+  .glow-dot:nth-child(13) { animation-delay: 1.4s; }
+</style>
+

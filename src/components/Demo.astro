@@ -1,0 +1,892 @@
+---
+import { t } from '../i18n/translations';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+---
+
+<section id="demo" class="relative py-24 md:py-32 overflow-hidden">
+  <!-- Background grid -->
+  <div class="absolute inset-0 grid-bg opacity-40 pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+
+    <!-- Section header -->
+    <div class="text-center mb-14 reveal">
+      <span class="label-tag block mb-4">{t(lang, 'demo.tag')}</span>
+      <h2 class="heading-lg text-4xl md:text-5xl text-[var(--color-dark-text)]">
+        {t(lang, 'demo.title')} <span class="text-[var(--color-brand-primary)]">{t(lang, 'demo.titleHighlight')}</span>
+      </h2>
+    </div>
+
+    <!-- Demo container -->
+    <div class="reveal reveal-delay-2">
+
+      <!-- Tab navigation -->
+      <div class="flex items-center gap-1 mb-0 overflow-x-auto scrollbar-hidden" role="tablist" aria-label="Demo tabs" id="demo-tablist">
+        <button
+          class="demo-tab active"
+          role="tab"
+          aria-selected="true"
+          aria-controls="tab-dashboard"
+          id="tab-btn-dashboard"
+          data-tab="dashboard"
+        >
+          <span class="demo-tab-dot"></span>
+          {t(lang, 'demo.tab.dashboard')}
+        </button>
+        <button
+          class="demo-tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="tab-products"
+          id="tab-btn-products"
+          data-tab="products"
+        >
+          <span class="demo-tab-dot"></span>
+          {t(lang, 'demo.tab.products')}
+        </button>
+        <button
+          class="demo-tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="tab-movements"
+          id="tab-btn-movements"
+          data-tab="movements"
+        >
+          <span class="demo-tab-dot"></span>
+          {t(lang, 'demo.tab.movements')}
+        </button>
+        <button
+          class="demo-tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="tab-reports"
+          id="tab-btn-reports"
+          data-tab="reports"
+        >
+          <span class="demo-tab-dot"></span>
+          {t(lang, 'demo.tab.reports')}
+        </button>
+      </div>
+
+      <!-- Browser window chrome -->
+      <div class="glass-card overflow-hidden border border-[var(--color-dark-border-light)]" style="border-radius: 0 12px 12px 12px;">
+
+        <!-- Browser top bar -->
+        <div class="flex items-center gap-3 px-5 py-3.5 border-b border-[var(--color-dark-border)] bg-[var(--color-dark-surface-alt)]">
+          <!-- Traffic lights -->
+          <div class="flex items-center gap-2 shrink-0">
+            <span class="w-3 h-3 rounded-full bg-[var(--color-danger)] opacity-80 block"></span>
+            <span class="w-3 h-3 rounded-full bg-[var(--color-warning)] opacity-80 block"></span>
+            <span class="w-3 h-3 rounded-full bg-[var(--color-success)] opacity-80 block"></span>
+          </div>
+          <!-- Address bar -->
+          <div class="flex-1 flex items-center gap-2 bg-[var(--color-dark-bg)] border border-[var(--color-dark-border)] rounded-md px-3 py-1.5 max-w-xs mx-auto">
+            <svg class="w-3 h-3 text-[var(--color-dark-text-muted)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+            </svg>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-dark-text-muted);">app.glastok.com/dashboard</span>
+          </div>
+          <!-- Right icons placeholder -->
+          <div class="flex items-center gap-2 shrink-0">
+            <span class="w-5 h-5 rounded bg-[var(--color-dark-border)] block opacity-50"></span>
+            <span class="w-5 h-5 rounded bg-[var(--color-dark-border)] block opacity-50"></span>
+          </div>
+        </div>
+
+        <!-- App shell: sidebar + content -->
+        <div class="flex min-h-[520px] bg-[var(--color-dark-bg)]">
+
+          <!-- Sidebar -->
+          <aside class="hidden sm:flex flex-col w-[200px] shrink-0 border-r border-[var(--color-dark-border)] bg-[var(--color-dark-surface)] py-4">
+            <!-- Logo row -->
+            <div class="flex items-center gap-2 px-4 mb-6">
+              <span class="w-6 h-6 rounded bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="var(--color-dark-bg)">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </span>
+              <span style="font-family: var(--font-heading); font-weight: 700; font-size: 13px; color: var(--color-dark-text); letter-spacing: 1px;">GLASTOK</span>
+            </div>
+            <!-- Nav items (decorative mock) -->
+            <nav class="flex flex-col gap-0.5 px-2" aria-hidden="true">
+              <span class="sidebar-nav-item sidebar-nav-active">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                Dashboard
+              </span>
+              <span class="sidebar-nav-item">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                Products
+              </span>
+              <span class="sidebar-nav-item">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+                Movements
+              </span>
+              <span class="sidebar-nav-item">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                Reports
+              </span>
+              <span class="sidebar-nav-item">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                Users
+              </span>
+            </nav>
+            <!-- Bottom user row -->
+            <div class="mt-auto px-3 pt-4 border-t border-[var(--color-dark-border)]">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0">
+                  <span style="font-family: var(--font-heading); font-size: 10px; font-weight: 700; color: var(--color-dark-bg);">AD</span>
+                </div>
+                <div>
+                  <p style="font-family: var(--font-heading); font-size: 11px; font-weight: 600; color: var(--color-dark-text);">Admin</p>
+                  <p style="font-size: 9px; color: var(--color-dark-text-muted);">Super Admin</p>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Tab content panels -->
+          <div class="flex-1 overflow-auto">
+
+            <!-- ===== DASHBOARD TAB ===== -->
+            <div class="demo-panel active" id="tab-dashboard" role="tabpanel" aria-labelledby="tab-btn-dashboard">
+              <div class="p-5 space-y-5">
+                <!-- Page title row -->
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h3 class="mock-page-title">Dashboard</h3>
+                    <p class="mock-page-sub">Welcome back, Admin</p>
+                  </div>
+                  <span class="mock-badge-yellow">Live</span>
+                </div>
+
+                <!-- Stat cards -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                  <div class="mock-stat-card" style="border-left-color: var(--color-brand-primary);">
+                    <span class="mock-stat-num">1,248</span>
+                    <span class="mock-stat-label">Total Products</span>
+                  </div>
+                  <div class="mock-stat-card" style="border-left-color: var(--color-info);">
+                    <span class="mock-stat-num">4</span>
+                    <span class="mock-stat-label">Warehouses</span>
+                  </div>
+                  <div class="mock-stat-card" style="border-left-color: var(--color-success);">
+                    <span class="mock-stat-num">342</span>
+                    <span class="mock-stat-label">Today's Movements</span>
+                  </div>
+                  <div class="mock-stat-card" style="border-left-color: var(--color-danger);">
+                    <span class="mock-stat-num">17</span>
+                    <span class="mock-stat-label">Low Stock Alerts</span>
+                  </div>
+                </div>
+
+                <!-- Recent movements table -->
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="mock-table-header-label">Recent Movements</span>
+                    <span class="mock-link">View All</span>
+                  </div>
+                  <div class="mock-table-wrap">
+                    <div class="mock-table-head">
+                      <span>Product</span>
+                      <span>Type</span>
+                      <span>Qty</span>
+                      <span>Warehouse</span>
+                      <span>Time</span>
+                    </div>
+                    <div class="mock-table-row">
+                      <span class="mock-cell-primary">PRD-0042 — Steel Bracket A</span>
+                      <span><span class="mock-badge-green">IN</span></span>
+                      <span class="mock-cell-num">+120</span>
+                      <span class="mock-cell-muted">WH-Istanbul</span>
+                      <span class="mock-cell-muted">14:32</span>
+                    </div>
+                    <div class="mock-table-row">
+                      <span class="mock-cell-primary">PRD-0091 — Cable 5mm</span>
+                      <span><span class="mock-badge-red">OUT</span></span>
+                      <span class="mock-cell-num">-50</span>
+                      <span class="mock-cell-muted">WH-Ankara</span>
+                      <span class="mock-cell-muted">13:18</span>
+                    </div>
+                    <div class="mock-table-row">
+                      <span class="mock-cell-primary">PRD-0017 — Bolt Set M8</span>
+                      <span><span class="mock-badge-blue">TRANSFER</span></span>
+                      <span class="mock-cell-num">200</span>
+                      <span class="mock-cell-muted">WH-Izmir</span>
+                      <span class="mock-cell-muted">12:05</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Alert strip -->
+                <div class="mock-alert-strip">
+                  <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                  17 products below minimum stock threshold — <span style="color: var(--color-brand-primary); font-weight: 600;">View Alerts</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== PRODUCTS TAB ===== -->
+            <div class="demo-panel" id="tab-products" role="tabpanel" aria-labelledby="tab-btn-products">
+              <div class="p-5 space-y-4">
+                <div class="flex items-center justify-between">
+                  <h3 class="mock-page-title">Products</h3>
+                  <button class="mock-btn-primary">+ Add Product</button>
+                </div>
+
+                <!-- Search + filters -->
+                <div class="flex gap-2">
+                  <div class="flex-1 flex items-center gap-2 mock-input-wrap">
+                    <svg class="w-3.5 h-3.5 shrink-0" style="color: var(--color-dark-text-muted)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    <span style="color: var(--color-dark-text-dim); font-size: 12px;">Search products, barcodes...</span>
+                  </div>
+                  <span class="mock-filter-btn">Category</span>
+                  <span class="mock-filter-btn">Warehouse</span>
+                </div>
+
+                <!-- Products table -->
+                <div class="mock-table-wrap">
+                  <div class="mock-table-head" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;">
+                    <span>Code</span>
+                    <span>Name</span>
+                    <span>Category</span>
+                    <span>Price</span>
+                    <span>Stock</span>
+                    <span>Status</span>
+                  </div>
+                  <div class="mock-table-row" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;">
+                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-0042</span>
+                    <span class="mock-cell-primary">Steel Bracket A</span>
+                    <span><span class="mock-badge-outline">Hardware</span></span>
+                    <span class="mock-cell-num">$4.50</span>
+                    <span class="mock-cell-num">842</span>
+                    <span><span class="mock-badge-green">OK</span></span>
+                  </div>
+                  <div class="mock-table-row" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;">
+                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-0091</span>
+                    <span class="mock-cell-primary">Cable 5mm × 100m</span>
+                    <span><span class="mock-badge-outline">Electrical</span></span>
+                    <span class="mock-cell-num">$28.00</span>
+                    <span class="mock-cell-num">12</span>
+                    <span><span class="mock-badge-red">LOW</span></span>
+                  </div>
+                  <div class="mock-table-row" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;">
+                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-0017</span>
+                    <span class="mock-cell-primary">Bolt Set M8 (100pcs)</span>
+                    <span><span class="mock-badge-outline">Fasteners</span></span>
+                    <span class="mock-cell-num">$12.90</span>
+                    <span class="mock-cell-num">580</span>
+                    <span><span class="mock-badge-green">OK</span></span>
+                  </div>
+                  <div class="mock-table-row" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;">
+                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-0203</span>
+                    <span class="mock-cell-primary">Safety Valve 3/4"</span>
+                    <span><span class="mock-badge-outline">Pneumatics</span></span>
+                    <span class="mock-cell-num">$67.00</span>
+                    <span class="mock-cell-num">0</span>
+                    <span><span class="mock-badge-dim">OUT</span></span>
+                  </div>
+                </div>
+
+                <!-- Pagination row -->
+                <div class="flex items-center justify-between mt-2">
+                  <span style="font-size: 11px; color: var(--color-dark-text-muted);">Showing 1–4 of 1,248 products</span>
+                  <div class="flex gap-1">
+                    <span class="mock-page-btn active">1</span>
+                    <span class="mock-page-btn">2</span>
+                    <span class="mock-page-btn">3</span>
+                    <span style="font-size: 11px; color: var(--color-dark-text-dim); padding: 0 4px;">...</span>
+                    <span class="mock-page-btn">312</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== MOVEMENTS TAB ===== -->
+            <div class="demo-panel" id="tab-movements" role="tabpanel" aria-labelledby="tab-btn-movements">
+              <div class="p-5 space-y-4">
+                <div class="flex items-center justify-between">
+                  <h3 class="mock-page-title">Stock Movements</h3>
+                  <button class="mock-btn-primary">+ New Movement</button>
+                </div>
+
+                <!-- Filter bar -->
+                <div class="flex flex-wrap gap-2">
+                  <span class="mock-filter-btn mock-filter-active">All Types</span>
+                  <span class="mock-filter-btn">IN</span>
+                  <span class="mock-filter-btn">OUT</span>
+                  <span class="mock-filter-btn">Transfer</span>
+                  <span class="mock-filter-btn">Adjustment</span>
+                  <span class="mock-filter-btn">Return</span>
+                  <div class="ml-auto flex gap-2">
+                    <span class="mock-filter-btn">Date Range</span>
+                    <span class="mock-filter-btn">Warehouse</span>
+                  </div>
+                </div>
+
+                <!-- Movements table -->
+                <div class="mock-table-wrap">
+                  <div class="mock-table-head" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
+                    <span>Date</span>
+                    <span>Product</span>
+                    <span>Type</span>
+                    <span>Qty</span>
+                    <span>Warehouse</span>
+                    <span>User</span>
+                  </div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
+                    <span class="mock-cell-muted">Apr 09, 14:32</span>
+                    <span class="mock-cell-primary">Steel Bracket A</span>
+                    <span><span class="mock-badge-green">IN</span></span>
+                    <span class="mock-cell-num" style="color: var(--color-success);">+120</span>
+                    <span class="mock-cell-muted">WH-Istanbul</span>
+                    <span class="mock-cell-muted">admin</span>
+                  </div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
+                    <span class="mock-cell-muted">Apr 09, 13:18</span>
+                    <span class="mock-cell-primary">Cable 5mm</span>
+                    <span><span class="mock-badge-red">OUT</span></span>
+                    <span class="mock-cell-num" style="color: var(--color-danger);">-50</span>
+                    <span class="mock-cell-muted">WH-Ankara</span>
+                    <span class="mock-cell-muted">user2</span>
+                  </div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
+                    <span class="mock-cell-muted">Apr 09, 12:05</span>
+                    <span class="mock-cell-primary">Bolt Set M8</span>
+                    <span><span class="mock-badge-blue">TRANSFER</span></span>
+                    <span class="mock-cell-num">200</span>
+                    <span class="mock-cell-muted">IST → IZM</span>
+                    <span class="mock-cell-muted">admin</span>
+                  </div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
+                    <span class="mock-cell-muted">Apr 09, 10:47</span>
+                    <span class="mock-cell-primary">Safety Valve 3/4"</span>
+                    <span><span class="mock-badge-yellow-sm">ADJUST</span></span>
+                    <span class="mock-cell-num" style="color: var(--color-warning);">-3</span>
+                    <span class="mock-cell-muted">WH-Istanbul</span>
+                    <span class="mock-cell-muted">user3</span>
+                  </div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
+                    <span class="mock-cell-muted">Apr 09, 09:22</span>
+                    <span class="mock-cell-primary">Steel Bracket A</span>
+                    <span><span class="mock-badge-purple">RETURN</span></span>
+                    <span class="mock-cell-num" style="color: var(--color-info);">+15</span>
+                    <span class="mock-cell-muted">WH-Istanbul</span>
+                    <span class="mock-cell-muted">admin</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== REPORTS TAB ===== -->
+            <div class="demo-panel" id="tab-reports" role="tabpanel" aria-labelledby="tab-btn-reports">
+              <div class="p-5 space-y-5">
+                <div class="flex items-center justify-between">
+                  <h3 class="mock-page-title">Reports & Analytics</h3>
+                  <div class="flex gap-2">
+                    <span class="mock-filter-btn mock-filter-active">Weekly</span>
+                    <span class="mock-filter-btn">Monthly</span>
+                    <span class="mock-filter-btn">Export CSV</span>
+                  </div>
+                </div>
+
+                <!-- Chart area -->
+                <div class="rounded-lg border border-[var(--color-dark-border)] bg-[var(--color-dark-surface)] p-4">
+                  <p style="font-family: var(--font-heading); font-size: 12px; font-weight: 600; color: var(--color-dark-text-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;">Stock Movement Volume — Last 7 Days</p>
+                  <!-- CSS bar chart -->
+                  <div class="mock-chart-wrap" aria-label="Bar chart showing stock movements over last 7 days">
+                    <div class="mock-chart-bar-group">
+                      <div class="mock-bar-stack">
+                        <span class="mock-bar-in" style="height: 60%"></span>
+                        <span class="mock-bar-out" style="height: 30%"></span>
+                      </div>
+                      <span class="mock-bar-label">Mon</span>
+                    </div>
+                    <div class="mock-chart-bar-group">
+                      <div class="mock-bar-stack">
+                        <span class="mock-bar-in" style="height: 80%"></span>
+                        <span class="mock-bar-out" style="height: 50%"></span>
+                      </div>
+                      <span class="mock-bar-label">Tue</span>
+                    </div>
+                    <div class="mock-chart-bar-group">
+                      <div class="mock-bar-stack">
+                        <span class="mock-bar-in" style="height: 45%"></span>
+                        <span class="mock-bar-out" style="height: 65%"></span>
+                      </div>
+                      <span class="mock-bar-label">Wed</span>
+                    </div>
+                    <div class="mock-chart-bar-group">
+                      <div class="mock-bar-stack">
+                        <span class="mock-bar-in" style="height: 90%"></span>
+                        <span class="mock-bar-out" style="height: 40%"></span>
+                      </div>
+                      <span class="mock-bar-label">Thu</span>
+                    </div>
+                    <div class="mock-chart-bar-group">
+                      <div class="mock-bar-stack">
+                        <span class="mock-bar-in" style="height: 70%"></span>
+                        <span class="mock-bar-out" style="height: 55%"></span>
+                      </div>
+                      <span class="mock-bar-label">Fri</span>
+                    </div>
+                    <div class="mock-chart-bar-group">
+                      <div class="mock-bar-stack">
+                        <span class="mock-bar-in" style="height: 35%"></span>
+                        <span class="mock-bar-out" style="height: 20%"></span>
+                      </div>
+                      <span class="mock-bar-label">Sat</span>
+                    </div>
+                    <div class="mock-chart-bar-group">
+                      <div class="mock-bar-stack">
+                        <span class="mock-bar-in" style="height: 55%"></span>
+                        <span class="mock-bar-out" style="height: 35%"></span>
+                      </div>
+                      <span class="mock-bar-label">Sun</span>
+                    </div>
+                  </div>
+                  <!-- Chart legend -->
+                  <div class="flex items-center gap-4 mt-3">
+                    <div class="flex items-center gap-1.5">
+                      <span class="w-2.5 h-2.5 rounded-sm" style="background: var(--color-success); display: block;"></span>
+                      <span style="font-size: 11px; color: var(--color-dark-text-muted);">Stock In</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <span class="w-2.5 h-2.5 rounded-sm" style="background: var(--color-danger); display: block;"></span>
+                      <span style="font-size: 11px; color: var(--color-dark-text-muted);">Stock Out</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Summary stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <div class="mock-report-stat">
+                    <span class="mock-report-stat-num" style="color: var(--color-success);">2,847</span>
+                    <span class="mock-report-stat-label">Total IN</span>
+                    <span class="mock-report-stat-delta" style="color: var(--color-success);">+12.4%</span>
+                  </div>
+                  <div class="mock-report-stat">
+                    <span class="mock-report-stat-num" style="color: var(--color-danger);">1,623</span>
+                    <span class="mock-report-stat-label">Total OUT</span>
+                    <span class="mock-report-stat-delta" style="color: var(--color-danger);">-3.1%</span>
+                  </div>
+                  <div class="mock-report-stat">
+                    <span class="mock-report-stat-num" style="color: var(--color-brand-primary);">$84.2K</span>
+                    <span class="mock-report-stat-label">Stock Value</span>
+                    <span class="mock-report-stat-delta" style="color: var(--color-success);">+8.7%</span>
+                  </div>
+                  <div class="mock-report-stat">
+                    <span class="mock-report-stat-num" style="color: var(--color-info);">342</span>
+                    <span class="mock-report-stat-label">Movements/Day</span>
+                    <span class="mock-report-stat-delta" style="color: var(--color-success);">+5.2%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- end content -->
+        </div><!-- end app shell -->
+      </div><!-- end browser window -->
+    </div><!-- end demo container -->
+  </div><!-- end max-w -->
+</section>
+
+<style>
+  /* ===== TAB BUTTONS ===== */
+  .demo-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--color-dark-text-muted);
+    background: var(--color-dark-surface-alt);
+    border: 1px solid var(--color-dark-border);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .demo-tab:hover {
+    color: var(--color-dark-text);
+    background: var(--color-dark-surface);
+  }
+  .demo-tab.active {
+    color: var(--color-brand-primary);
+    background: var(--color-dark-surface-alt);
+    border-color: var(--color-dark-border-light);
+    box-shadow: inset 0 2px 0 var(--color-brand-primary);
+  }
+  .demo-tab-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-dark-border-light);
+    display: block;
+    transition: background 0.2s;
+  }
+  .demo-tab.active .demo-tab-dot {
+    background: var(--color-brand-primary);
+    box-shadow: 0 0 6px rgba(255, 214, 0, 0.5);
+  }
+
+  /* ===== PANELS ===== */
+  .demo-panel {
+    display: none;
+  }
+  .demo-panel.active {
+    display: block;
+    animation: panelFadeIn 0.3s var(--ease-out-expo) forwards;
+  }
+  @keyframes panelFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== SIDEBAR NAV ===== */
+  .sidebar-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--color-dark-text-muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .sidebar-nav-item:hover {
+    background: rgba(255,255,255,0.04);
+    color: var(--color-dark-text);
+  }
+  .sidebar-nav-active {
+    background: rgba(255,214,0,0.08);
+    color: var(--color-brand-primary) !important;
+  }
+
+  /* ===== MOCK UI ELEMENTS ===== */
+  .mock-page-title {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-dark-text);
+    letter-spacing: -0.02em;
+  }
+  .mock-page-sub {
+    font-size: 11px;
+    color: var(--color-dark-text-muted);
+    margin-top: 2px;
+  }
+  .mock-table-wrap {
+    border: 1px solid var(--color-dark-border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .mock-table-head {
+    display: grid;
+    grid-template-columns: 1.5fr 0.7fr 0.6fr 1fr 0.6fr;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--color-dark-surface-alt);
+    border-bottom: 1px solid var(--color-dark-border);
+    font-family: var(--font-heading);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-dark-text-dim);
+  }
+  .mock-table-row {
+    display: grid;
+    grid-template-columns: 1.5fr 0.7fr 0.6fr 1fr 0.6fr;
+    gap: 8px;
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--color-dark-border);
+    align-items: center;
+    font-size: 12px;
+    transition: background 0.15s;
+  }
+  .mock-table-row:last-child { border-bottom: none; }
+  .mock-table-row:hover { background: rgba(255,255,255,0.02); }
+  .mock-cell-primary {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--color-dark-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .mock-cell-num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-dark-text);
+  }
+  .mock-cell-muted {
+    font-size: 11px;
+    color: var(--color-dark-text-muted);
+  }
+  .mock-table-header-label {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-dark-text);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .mock-link {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    color: var(--color-brand-primary);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Badges */
+  .mock-badge-green, .mock-badge-red, .mock-badge-blue,
+  .mock-badge-yellow, .mock-badge-yellow-sm, .mock-badge-purple,
+  .mock-badge-outline, .mock-badge-dim {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: var(--font-heading);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .mock-badge-green   { background: rgba(34,197,94,0.15);  color: var(--color-success); border: 1px solid rgba(34,197,94,0.2); }
+  .mock-badge-red     { background: rgba(239,68,68,0.15);  color: var(--color-danger);  border: 1px solid rgba(239,68,68,0.2); }
+  .mock-badge-blue    { background: rgba(59,130,246,0.15); color: var(--color-info);    border: 1px solid rgba(59,130,246,0.2); }
+  .mock-badge-yellow  { background: rgba(255,214,0,0.15);  color: var(--color-brand-primary); border: 1px solid rgba(255,214,0,0.2); }
+  .mock-badge-yellow-sm { background: rgba(234,179,8,0.15); color: var(--color-warning); border: 1px solid rgba(234,179,8,0.2); }
+  .mock-badge-purple  { background: rgba(168,85,247,0.15); color: #A855F7; border: 1px solid rgba(168,85,247,0.2); }
+  .mock-badge-outline { background: transparent; color: var(--color-dark-text-muted); border: 1px solid var(--color-dark-border-light); }
+  .mock-badge-dim     { background: rgba(255,255,255,0.04); color: var(--color-dark-text-dim); border: 1px solid var(--color-dark-border); }
+
+  .mock-stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px;
+    background: var(--color-dark-surface-alt);
+    border: 1px solid var(--color-dark-border);
+    border-left-width: 3px;
+    border-radius: 8px;
+  }
+  .mock-stat-num {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-dark-text);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .mock-stat-label {
+    font-size: 10px;
+    color: var(--color-dark-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: var(--font-heading);
+  }
+
+  .mock-alert-strip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: rgba(234,179,8,0.06);
+    border: 1px solid rgba(234,179,8,0.2);
+    font-size: 12px;
+    color: var(--color-dark-text-muted);
+  }
+
+  .mock-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 14px;
+    background: var(--color-brand-primary);
+    color: var(--color-dark-bg);
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .mock-btn-primary:hover { background: var(--color-brand-primary-hover); }
+
+  .mock-input-wrap {
+    background: var(--color-dark-surface-alt);
+    border: 1px solid var(--color-dark-border);
+    border-radius: 6px;
+    padding: 7px 12px;
+    flex: 1;
+  }
+  .mock-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 12px;
+    background: var(--color-dark-surface-alt);
+    border: 1px solid var(--color-dark-border);
+    border-radius: 6px;
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-dark-text-muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+  .mock-filter-btn:hover { border-color: var(--color-dark-border-light); color: var(--color-dark-text); }
+  .mock-filter-active { border-color: var(--color-brand-primary) !important; color: var(--color-brand-primary) !important; background: rgba(255,214,0,0.06) !important; }
+
+  .mock-page-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-dark-text-muted);
+    background: var(--color-dark-surface-alt);
+    border: 1px solid var(--color-dark-border);
+    cursor: pointer;
+  }
+  .mock-page-btn.active { background: var(--color-brand-primary); color: var(--color-dark-bg); border-color: var(--color-brand-primary); font-weight: 700; }
+
+  /* Bar chart */
+  .mock-chart-wrap {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 120px;
+    gap: 6px;
+    padding-top: 8px;
+    border-bottom: 1px solid var(--color-dark-border);
+  }
+  .mock-chart-bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    height: 100%;
+  }
+  .mock-bar-stack {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 2px;
+    flex: 1;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .mock-bar-in, .mock-bar-out {
+    width: 100%;
+    border-radius: 3px 3px 0 0;
+    transition: height 0.6s var(--ease-out-expo);
+    min-height: 4px;
+  }
+  .mock-bar-in  { background: rgba(34,197,94,0.7); }
+  .mock-bar-out { background: rgba(239,68,68,0.6); }
+  .mock-bar-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--color-dark-text-dim);
+  }
+
+  /* Report stats */
+  .mock-report-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 14px;
+    background: var(--color-dark-surface-alt);
+    border: 1px solid var(--color-dark-border);
+    border-radius: 8px;
+  }
+  .mock-report-stat-num {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .mock-report-stat-label {
+    font-size: 10px;
+    color: var(--color-dark-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: var(--font-heading);
+  }
+  .mock-report-stat-delta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hidden::-webkit-scrollbar { display: none; }
+</style>
+
+<script>
+  (function() {
+    const tablist = document.getElementById('demo-tablist');
+    if (!tablist) return;
+
+    const demoSection = document.getElementById('demo');
+    const tabs    = tablist.querySelectorAll<HTMLButtonElement>('.demo-tab');
+    const panels  = demoSection?.querySelectorAll<HTMLElement>('.demo-panel') ?? document.querySelectorAll<HTMLElement>('.demo-panel');
+
+    function activate(targetTab: HTMLButtonElement) {
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      panels.forEach(p => p.classList.remove('active'));
+
+      targetTab.classList.add('active');
+      targetTab.setAttribute('aria-selected', 'true');
+
+      const panelId = targetTab.getAttribute('aria-controls');
+      if (panelId) {
+        const panel = document.getElementById(panelId);
+        if (panel) panel.classList.add('active');
+      }
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => activate(tab));
+      tab.addEventListener('keydown', (e: KeyboardEvent) => {
+        const tabsArr = Array.from(tabs);
+        const idx = tabsArr.indexOf(tab);
+        let target: HTMLButtonElement | undefined;
+        if (e.key === 'ArrowRight') { e.preventDefault(); target = tabsArr[(idx + 1) % tabsArr.length]; }
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); target = tabsArr[(idx - 1 + tabsArr.length) % tabsArr.length]; }
+        if (e.key === 'Home') { e.preventDefault(); target = tabsArr[0]; }
+        if (e.key === 'End')  { e.preventDefault(); target = tabsArr[tabsArr.length - 1]; }
+        if (target) { activate(target); target.focus(); }
+      });
+    });
+  })();
+</script>

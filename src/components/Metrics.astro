@@ -1,0 +1,58 @@
+---
+import { t } from '../i18n/translations';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+
+const metrics = [
+  { value: 5, label: t(lang, 'metrics.movements'), accent: 'var(--color-warning)' },
+  { value: 13, label: t(lang, 'metrics.permissions'), accent: 'var(--color-info)' },
+  { value: 7, label: t(lang, 'metrics.reports'), accent: 'var(--color-brand-secondary)' },
+  { value: 3, label: t(lang, 'metrics.languages'), accent: 'var(--color-success)' },
+];
+---
+
+<section class="relative py-28 md:py-36 overflow-hidden">
+  <div class="absolute inset-0 bg-dark-surface grid-bg"></div>
+
+  <!-- Glow -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,214,0,0.03)_0%,transparent_60%)]"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-20 reveal">
+      <span class="label-tag inline-flex items-center gap-2 mb-6">
+        <span class="glow-dot !w-2 !h-2"></span>
+        {t(lang, 'metrics.tag')}
+      </span>
+      <h2 class="heading-lg text-3xl sm:text-4xl md:text-5xl">
+        {t(lang, 'metrics.title')}
+        <span class="text-brand-primary"> {t(lang, 'metrics.titleHighlight')}</span>
+      </h2>
+    </div>
+
+    <!-- Metrics grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-dark-border rounded-2xl overflow-hidden reveal">
+      {metrics.map((metric) => (
+        <div class="bg-dark-bg p-8 md:p-12 text-center group hover:bg-dark-surface/50 transition-colors duration-500">
+          <div
+            class="font-heading font-extrabold leading-none mb-4 transition-transform duration-500 group-hover:scale-110"
+            style={`font-size: clamp(3rem, 6vw, 5rem); color: ${metric.accent};`}
+            data-counter={metric.value}
+          >
+            {metric.value}
+          </div>
+          <div class="label-tag text-dark-text-muted !text-xs">
+            {metric.label}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Bottom divider -->
+  <div class="absolute bottom-0 left-0 right-0 section-divider"></div>
+</section>

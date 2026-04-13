@@ -1,0 +1,173 @@
+---
+import { t } from '../i18n/translations';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+
+const features = [
+  {
+    key: 'dashboard',
+    accent: 'var(--color-brand-primary)',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>`,
+  },
+  {
+    key: 'products',
+    accent: 'var(--color-info)',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>`,
+  },
+  {
+    key: 'warehouse',
+    accent: 'var(--color-success)',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21V11h6v10"/><path d="M3 11h18"/></svg>`,
+  },
+  {
+    key: 'movements',
+    accent: 'var(--color-warning)',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 00-2-2H5a2 2 0 00-2 2v11a1 1 0 001 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 001-1v-3.65a1 1 0 00-.22-.624l-3.48-4.35A1 1 0 0017.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>`,
+  },
+  {
+    key: 'reports',
+    accent: 'var(--color-brand-secondary)',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+  },
+  {
+    key: 'users',
+    accent: 'var(--color-info)',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  },
+  {
+    key: 'audit',
+    accent: 'var(--color-danger)',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
+  },
+  {
+    key: 'settings',
+    accent: 'var(--color-success)',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>`,
+  },
+];
+---
+
+<section id="features" class="relative py-28 md:py-36 overflow-hidden">
+  <div class="absolute inset-0 bg-dark-surface/30"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16 md:mb-20 reveal">
+      <span class="label-tag inline-flex items-center gap-2 mb-6">
+        <span class="glow-dot !w-2 !h-2"></span>
+        {t(lang, 'features.tag')}
+      </span>
+      <h2 class="heading-lg text-3xl sm:text-4xl md:text-5xl">
+        {t(lang, 'features.title')}
+        <span class="text-brand-primary"> {t(lang, 'features.titleHighlight')}</span>
+      </h2>
+    </div>
+
+    <!-- Hero row: first 2 features side by side, larger -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mb-4 md:mb-5 stagger-children">
+      {features.slice(0, 2).map((feature, i) => (
+        <div
+          class="feature-card feature-card-lg glass-card glass-card-hover group"
+          style={`border-left: 4px solid ${feature.accent};`}
+        >
+          {/* Corner index */}
+          <span class="feature-index" aria-hidden="true">0{i + 1}</span>
+
+          {/* Icon */}
+          <div
+            class="feature-icon"
+            style={`background: color-mix(in srgb, ${feature.accent} 10%, transparent); color: ${feature.accent};`}
+          >
+            <Fragment set:html={feature.icon} />
+          </div>
+
+          {/* Content */}
+          <h3 class="font-heading text-lg font-bold mb-2 text-dark-text">
+            {t(lang, `features.${feature.key}.title` as any)}
+          </h3>
+          <p class="text-sm leading-relaxed text-dark-text-muted max-w-md">
+            {t(lang, `features.${feature.key}.desc` as any)}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Main grid: remaining 6 features in 3 columns -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 stagger-children">
+      {features.slice(2).map((feature, i) => (
+        <div
+          class="feature-card glass-card glass-card-hover group"
+          style={`border-left: 4px solid ${feature.accent};`}
+        >
+          {/* Corner index */}
+          <span class="feature-index" aria-hidden="true">0{i + 3}</span>
+
+          {/* Icon */}
+          <div
+            class="feature-icon"
+            style={`background: color-mix(in srgb, ${feature.accent} 10%, transparent); color: ${feature.accent};`}
+          >
+            <Fragment set:html={feature.icon} />
+          </div>
+
+          {/* Content */}
+          <h3 class="font-heading text-base font-bold mb-2 text-dark-text">
+            {t(lang, `features.${feature.key}.title` as any)}
+          </h3>
+          <p class="text-sm leading-relaxed text-dark-text-muted">
+            {t(lang, `features.${feature.key}.desc` as any)}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .feature-card {
+    position: relative;
+    padding: 28px 28px;
+    overflow: hidden;
+  }
+
+  .feature-card-lg {
+    padding: 32px 32px;
+  }
+
+  @media (min-width: 768px) {
+    .feature-card-lg {
+      padding: 36px 36px;
+    }
+  }
+
+  .feature-index {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.025);
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .feature-icon {
+    transform: scale(1.1);
+  }
+</style>

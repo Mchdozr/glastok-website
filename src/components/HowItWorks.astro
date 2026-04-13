@@ -1,0 +1,85 @@
+---
+import { t } from '../i18n/translations';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+
+const steps = [
+  {
+    num: '01',
+    key: 'step1',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><path d="M7.5 4.21l4.5 2.6 4.5-2.6"/><path d="M7.5 19.79V14.6L3 12"/><path d="M21 12l-4.5 2.6v5.19"/><path d="M3.27 6.96L12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>`,
+  },
+  {
+    num: '02',
+    key: 'step2',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>`,
+  },
+  {
+    num: '03',
+    key: 'step3',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+  },
+  {
+    num: '04',
+    key: 'step4',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`,
+  },
+];
+---
+
+<section id="how-it-works" class="relative py-28 md:py-36">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-20 reveal">
+      <span class="label-tag inline-flex items-center gap-2 mb-6">
+        <span class="glow-dot !w-2 !h-2"></span>
+        {t(lang, 'how.tag')}
+      </span>
+      <h2 class="heading-lg text-3xl sm:text-4xl md:text-5xl">
+        {t(lang, 'how.title')}
+        <span class="text-brand-primary"> {t(lang, 'how.titleHighlight')}</span>
+      </h2>
+    </div>
+
+    <!-- Steps -->
+    <div class="relative">
+      <!-- Connecting line (desktop) -->
+      <div class="hidden md:block absolute top-16 left-[calc(12.5%+24px)] right-[calc(12.5%+24px)] h-px bg-gradient-to-r from-brand-primary/20 via-brand-primary/40 to-brand-primary/20"></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6 stagger-children">
+        {steps.map((step, i) => (
+          <div class="relative flex flex-col items-center text-center group">
+            {/* Mobile connecting line */}
+            {i < steps.length - 1 && (
+              <div class="md:hidden absolute top-[88px] left-1/2 w-px h-[calc(100%-56px)] bg-gradient-to-b from-brand-primary/30 to-transparent -translate-x-1/2"></div>
+            )}
+
+            {/* Number box */}
+            <div class="relative z-10 w-16 h-16 flex items-center justify-center border-2 border-dark-border-light bg-dark-bg mb-6 transition-all duration-500 group-hover:border-brand-primary group-hover:shadow-[0_0_30px_rgba(255,214,0,0.1)]">
+              <span class="font-heading text-xl font-extrabold text-dark-text-muted group-hover:text-brand-primary transition-colors duration-300">
+                {step.num}
+              </span>
+            </div>
+
+            {/* Icon */}
+            <div class="text-dark-text-muted mb-4 group-hover:text-brand-primary transition-colors duration-300">
+              <Fragment set:html={step.icon} />
+            </div>
+
+            {/* Text */}
+            <h3 class="font-heading text-lg font-bold uppercase tracking-wide mb-2 text-dark-text">
+              {t(lang, `how.${step.key}.title` as any)}
+            </h3>
+            <p class="text-sm text-dark-text-muted leading-relaxed max-w-[240px]">
+              {t(lang, `how.${step.key}.desc` as any)}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
