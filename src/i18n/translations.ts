@@ -57,7 +57,7 @@ export const translations = {
       "Sales trends, top sellers, profitability analysis and stock aging reports. Data-driven decisions made easy.",
     "features.users.title": "User & Permission Control",
     "features.users.desc":
-      "13 granular permissions with role-based access. Control who can view, edit or delete across every module.",
+      "14 granular permissions with role-based access. Control who can view, edit or delete across every module.",
     "features.audit.title": "Complete Audit Trail",
     "features.audit.desc":
       "Every action logged — who did what, when, from which IP. Failed login attempts and system events included.",
@@ -125,7 +125,8 @@ export const translations = {
     "contact.success":
       "Your message has been sent. We'll get back to you within 24 hours.",
     "contact.info.email": "info@glastok.com",
-    "contact.info.phone": "+90 (212) 000 00 00",
+    "contact.info.phone": "+90 (549) 800 25 10",
+    "contact.info.phone2": "+90 (542) 780 60 54",
     "contact.info.address": "Istanbul, Turkey",
 
     // Footer
@@ -254,7 +255,7 @@ export const translations = {
       "Satış trendleri, en çok satanlar, karlılık analizi ve stok yaşlanma raporları. Veriye dayalı kararlar.",
     "features.users.title": "Kullanıcı & Yetki Kontrolü",
     "features.users.desc":
-      "Rol tabanlı erişim ile 13 granüler izin. Her modülde kimin görüntüleyebileceğini, düzenleyebileceğini kontrol edin.",
+      "Rol tabanlı erişim ile 14 granüler izin. Her modülde kimin görüntüleyebileceğini, düzenleyebileceğini kontrol edin.",
     "features.audit.title": "Tam Denetim İzi",
     "features.audit.desc":
       "Her aksiyon kayıt altında — kim, ne zaman, hangi IP'den. Başarısız giriş denemeleri ve sistem olayları dahil.",
@@ -322,7 +323,8 @@ export const translations = {
     "contact.success":
       "Mesajınız gönderildi. 24 saat içinde size geri dönüş yapacağız.",
     "contact.info.email": "info@glastok.com",
-    "contact.info.phone": "+90 (212) 000 00 00",
+    "contact.info.phone": "+90 (549) 800 25 10",
+    "contact.info.phone2": "+90 (542) 780 60 54",
     "contact.info.address": "İstanbul, Türkiye",
 
     // Footer

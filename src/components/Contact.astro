@@ -52,7 +52,7 @@ const today = new Date().toISOString().split('T')[0];
             </div>
           </div>
 
-          <!-- Phone -->
+          <!-- Phone 1 -->
           <div class="flex items-start gap-4 group">
             <div class="contact-icon-wrap shrink-0">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -61,8 +61,11 @@ const today = new Date().toISOString().split('T')[0];
             </div>
             <div>
               <p class="contact-info-label">Phone</p>
-              <a href={`tel:${t(lang, 'contact.info.phone').replace(/\s|\(|\)|-/g, '')}`} class="contact-info-value group-hover:text-[var(--color-brand-primary)] transition-colors">
+              <a href={`tel:${t(lang, 'contact.info.phone').replace(/\s|\(|\)|-/g, '')}`} class="contact-info-value group-hover:text-[var(--color-brand-primary)] transition-colors block">
                 {t(lang, 'contact.info.phone')}
+              </a>
+              <a href={`tel:${t(lang, 'contact.info.phone2' as any).replace(/\s|\(|\)|-/g, '')}`} class="contact-info-value group-hover:text-[var(--color-brand-primary)] transition-colors block mt-1">
+                {t(lang, 'contact.info.phone2' as any)}
               </a>
             </div>
           </div>

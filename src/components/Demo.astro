@@ -116,23 +116,23 @@ const { lang } = Astro.props;
             <nav class="flex flex-col gap-0.5 px-2" aria-hidden="true">
               <span class="sidebar-nav-item sidebar-nav-active">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-                Dashboard
+                Ana Sayfa
               </span>
               <span class="sidebar-nav-item">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-                Products
+                Ürünler
               </span>
               <span class="sidebar-nav-item">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
-                Movements
+                Hareketler
               </span>
               <span class="sidebar-nav-item">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                Reports
+                Raporlar
               </span>
               <span class="sidebar-nav-item">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-                Users
+                Kullanıcılar
               </span>
             </nav>
             <!-- Bottom user row -->
@@ -159,64 +159,64 @@ const { lang } = Astro.props;
                 <div class="flex items-center justify-between">
                   <div>
                     <h3 class="mock-page-title">Dashboard</h3>
-                    <p class="mock-page-sub">Welcome back, Admin</p>
+                    <p class="mock-page-sub">Hoş geldiniz, Admin</p>
                   </div>
-                  <span class="mock-badge-yellow">Live</span>
+                  <span class="mock-badge-yellow">Canlı</span>
                 </div>
 
                 <!-- Stat cards -->
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
                   <div class="mock-stat-card" style="border-left-color: var(--color-brand-primary);">
-                    <span class="mock-stat-num">1,248</span>
-                    <span class="mock-stat-label">Total Products</span>
+                    <span class="mock-stat-num">847</span>
+                    <span class="mock-stat-label">Toplam Ürün</span>
                   </div>
                   <div class="mock-stat-card" style="border-left-color: var(--color-info);">
-                    <span class="mock-stat-num">4</span>
-                    <span class="mock-stat-label">Warehouses</span>
+                    <span class="mock-stat-num">3</span>
+                    <span class="mock-stat-label">Depo</span>
                   </div>
                   <div class="mock-stat-card" style="border-left-color: var(--color-success);">
-                    <span class="mock-stat-num">342</span>
-                    <span class="mock-stat-label">Today's Movements</span>
+                    <span class="mock-stat-num">156</span>
+                    <span class="mock-stat-label">Bugünkü Hareketler</span>
                   </div>
                   <div class="mock-stat-card" style="border-left-color: var(--color-danger);">
-                    <span class="mock-stat-num">17</span>
-                    <span class="mock-stat-label">Low Stock Alerts</span>
+                    <span class="mock-stat-num">12</span>
+                    <span class="mock-stat-label">Düşük Stok Uyarısı</span>
                   </div>
                 </div>
 
                 <!-- Recent movements table -->
                 <div>
                   <div class="flex items-center justify-between mb-2">
-                    <span class="mock-table-header-label">Recent Movements</span>
-                    <span class="mock-link">View All</span>
+                    <span class="mock-table-header-label">Son Hareketler</span>
+                    <span class="mock-link">Tümünü Gör</span>
                   </div>
                   <div class="mock-table-wrap">
                     <div class="mock-table-head">
-                      <span>Product</span>
-                      <span>Type</span>
-                      <span>Qty</span>
-                      <span>Warehouse</span>
-                      <span>Time</span>
+                      <span>Ürün</span>
+                      <span>Tip</span>
+                      <span>Miktar</span>
+                      <span>Depo</span>
+                      <span>Saat</span>
                     </div>
                     <div class="mock-table-row">
-                      <span class="mock-cell-primary">PRD-0042 — Steel Bracket A</span>
-                      <span><span class="mock-badge-green">IN</span></span>
-                      <span class="mock-cell-num">+120</span>
-                      <span class="mock-cell-muted">WH-Istanbul</span>
+                      <span class="mock-cell-primary">PRD-001 — Laptop</span>
+                      <span><span class="mock-badge-green">GİRİŞ</span></span>
+                      <span class="mock-cell-num">+25</span>
+                      <span class="mock-cell-muted">Ana Depo</span>
                       <span class="mock-cell-muted">14:32</span>
                     </div>
                     <div class="mock-table-row">
-                      <span class="mock-cell-primary">PRD-0091 — Cable 5mm</span>
-                      <span><span class="mock-badge-red">OUT</span></span>
-                      <span class="mock-cell-num">-50</span>
-                      <span class="mock-cell-muted">WH-Ankara</span>
+                      <span class="mock-cell-primary">PRD-002 — Akıllı Telefon</span>
+                      <span><span class="mock-badge-red">ÇIKIŞ</span></span>
+                      <span class="mock-cell-num">-18</span>
+                      <span class="mock-cell-muted">Şube Deposu</span>
                       <span class="mock-cell-muted">13:18</span>
                     </div>
                     <div class="mock-table-row">
-                      <span class="mock-cell-primary">PRD-0017 — Bolt Set M8</span>
+                      <span class="mock-cell-primary">PRD-008 — Basic T-Shirt</span>
                       <span><span class="mock-badge-blue">TRANSFER</span></span>
-                      <span class="mock-cell-num">200</span>
-                      <span class="mock-cell-muted">WH-Izmir</span>
+                      <span class="mock-cell-num">50</span>
+                      <span class="mock-cell-muted">İST → ANK</span>
                       <span class="mock-cell-muted">12:05</span>
                     </div>
                   </div>
@@ -225,7 +225,7 @@ const { lang } = Astro.props;
                 <!-- Alert strip -->
                 <div class="mock-alert-strip">
                   <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-                  17 products below minimum stock threshold — <span style="color: var(--color-brand-primary); font-weight: 600;">View Alerts</span>
+                  12 ürün minimum stok seviyesinin altında — <span style="color: var(--color-brand-primary); font-weight: 600;">Uyarıları Gör</span>
                 </div>
               </div>
             </div>
@@ -234,73 +234,73 @@ const { lang } = Astro.props;
             <div class="demo-panel" id="tab-products" role="tabpanel" aria-labelledby="tab-btn-products">
               <div class="p-5 space-y-4">
                 <div class="flex items-center justify-between">
-                  <h3 class="mock-page-title">Products</h3>
-                  <button class="mock-btn-primary">+ Add Product</button>
+                  <h3 class="mock-page-title">Ürünler</h3>
+                  <button class="mock-btn-primary">+ Ürün Ekle</button>
                 </div>
 
                 <!-- Search + filters -->
                 <div class="flex gap-2">
                   <div class="flex-1 flex items-center gap-2 mock-input-wrap">
                     <svg class="w-3.5 h-3.5 shrink-0" style="color: var(--color-dark-text-muted)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    <span style="color: var(--color-dark-text-dim); font-size: 12px;">Search products, barcodes...</span>
+                    <span style="color: var(--color-dark-text-dim); font-size: 12px;">Ürün, barkod ara...</span>
                   </div>
-                  <span class="mock-filter-btn">Category</span>
-                  <span class="mock-filter-btn">Warehouse</span>
+                  <span class="mock-filter-btn">Kategori</span>
+                  <span class="mock-filter-btn">Depo</span>
                 </div>
 
                 <!-- Products table -->
                 <div class="mock-table-wrap">
                   <div class="mock-table-head" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;">
-                    <span>Code</span>
-                    <span>Name</span>
-                    <span>Category</span>
-                    <span>Price</span>
-                    <span>Stock</span>
-                    <span>Status</span>
+                    <span>Kod</span>
+                    <span>Ürün Adı</span>
+                    <span>Kategori</span>
+                    <span>Fiyat</span>
+                    <span>Stok</span>
+                    <span>Durum</span>
                   </div>
                   <div class="mock-table-row" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;">
-                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-0042</span>
-                    <span class="mock-cell-primary">Steel Bracket A</span>
-                    <span><span class="mock-badge-outline">Hardware</span></span>
-                    <span class="mock-cell-num">$4.50</span>
-                    <span class="mock-cell-num">842</span>
+                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-001</span>
+                    <span class="mock-cell-primary">Laptop</span>
+                    <span><span class="mock-badge-outline">Elektronik</span></span>
+                    <span class="mock-cell-num">₺15.000</span>
+                    <span class="mock-cell-num">42</span>
                     <span><span class="mock-badge-green">OK</span></span>
                   </div>
                   <div class="mock-table-row" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;">
-                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-0091</span>
-                    <span class="mock-cell-primary">Cable 5mm × 100m</span>
-                    <span><span class="mock-badge-outline">Electrical</span></span>
-                    <span class="mock-cell-num">$28.00</span>
-                    <span class="mock-cell-num">12</span>
+                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-002</span>
+                    <span class="mock-cell-primary">Akıllı Telefon</span>
+                    <span><span class="mock-badge-outline">Elektronik</span></span>
+                    <span class="mock-cell-num">₺8.500</span>
+                    <span class="mock-cell-num">3</span>
                     <span><span class="mock-badge-red">LOW</span></span>
                   </div>
                   <div class="mock-table-row" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;">
-                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-0017</span>
-                    <span class="mock-cell-primary">Bolt Set M8 (100pcs)</span>
-                    <span><span class="mock-badge-outline">Fasteners</span></span>
-                    <span class="mock-cell-num">$12.90</span>
-                    <span class="mock-cell-num">580</span>
+                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-005</span>
+                    <span class="mock-cell-primary">Zeytinyağı 1L</span>
+                    <span><span class="mock-badge-outline">Gıda</span></span>
+                    <span class="mock-cell-num">₺320</span>
+                    <span class="mock-cell-num">180</span>
                     <span><span class="mock-badge-green">OK</span></span>
                   </div>
                   <div class="mock-table-row" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;">
-                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-0203</span>
-                    <span class="mock-cell-primary">Safety Valve 3/4"</span>
-                    <span><span class="mock-badge-outline">Pneumatics</span></span>
-                    <span class="mock-cell-num">$67.00</span>
+                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-009</span>
+                    <span class="mock-cell-primary">Slim Gömlek</span>
+                    <span><span class="mock-badge-outline">Giyim</span></span>
+                    <span class="mock-cell-num">₺450</span>
                     <span class="mock-cell-num">0</span>
-                    <span><span class="mock-badge-dim">OUT</span></span>
+                    <span><span class="mock-badge-dim">TÜKENDİ</span></span>
                   </div>
                 </div>
 
                 <!-- Pagination row -->
                 <div class="flex items-center justify-between mt-2">
-                  <span style="font-size: 11px; color: var(--color-dark-text-muted);">Showing 1–4 of 1,248 products</span>
+                  <span style="font-size: 11px; color: var(--color-dark-text-muted);">1–4 / 847 ürün gösteriliyor</span>
                   <div class="flex gap-1">
                     <span class="mock-page-btn active">1</span>
                     <span class="mock-page-btn">2</span>
                     <span class="mock-page-btn">3</span>
                     <span style="font-size: 11px; color: var(--color-dark-text-dim); padding: 0 4px;">...</span>
-                    <span class="mock-page-btn">312</span>
+                    <span class="mock-page-btn">212</span>
                   </div>
                 </div>
               </div>
@@ -310,72 +310,72 @@ const { lang } = Astro.props;
             <div class="demo-panel" id="tab-movements" role="tabpanel" aria-labelledby="tab-btn-movements">
               <div class="p-5 space-y-4">
                 <div class="flex items-center justify-between">
-                  <h3 class="mock-page-title">Stock Movements</h3>
-                  <button class="mock-btn-primary">+ New Movement</button>
+                  <h3 class="mock-page-title">Stok Hareketleri</h3>
+                  <button class="mock-btn-primary">+ Yeni Hareket</button>
                 </div>
 
                 <!-- Filter bar -->
                 <div class="flex flex-wrap gap-2">
-                  <span class="mock-filter-btn mock-filter-active">All Types</span>
-                  <span class="mock-filter-btn">IN</span>
-                  <span class="mock-filter-btn">OUT</span>
+                  <span class="mock-filter-btn mock-filter-active">Tüm Tipler</span>
+                  <span class="mock-filter-btn">Giriş</span>
+                  <span class="mock-filter-btn">Çıkış</span>
                   <span class="mock-filter-btn">Transfer</span>
-                  <span class="mock-filter-btn">Adjustment</span>
-                  <span class="mock-filter-btn">Return</span>
+                  <span class="mock-filter-btn">Düzeltme</span>
+                  <span class="mock-filter-btn">İade</span>
                   <div class="ml-auto flex gap-2">
-                    <span class="mock-filter-btn">Date Range</span>
-                    <span class="mock-filter-btn">Warehouse</span>
+                    <span class="mock-filter-btn">Tarih Aralığı</span>
+                    <span class="mock-filter-btn">Depo</span>
                   </div>
                 </div>
 
                 <!-- Movements table -->
                 <div class="mock-table-wrap">
                   <div class="mock-table-head" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
-                    <span>Date</span>
-                    <span>Product</span>
-                    <span>Type</span>
-                    <span>Qty</span>
-                    <span>Warehouse</span>
-                    <span>User</span>
+                    <span>Tarih</span>
+                    <span>Ürün</span>
+                    <span>Tip</span>
+                    <span>Miktar</span>
+                    <span>Depo</span>
+                    <span>Kullanıcı</span>
                   </div>
                   <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
-                    <span class="mock-cell-muted">Apr 09, 14:32</span>
-                    <span class="mock-cell-primary">Steel Bracket A</span>
-                    <span><span class="mock-badge-green">IN</span></span>
-                    <span class="mock-cell-num" style="color: var(--color-success);">+120</span>
-                    <span class="mock-cell-muted">WH-Istanbul</span>
+                    <span class="mock-cell-muted">20 Nis, 14:32</span>
+                    <span class="mock-cell-primary">Laptop</span>
+                    <span><span class="mock-badge-green">GİRİŞ</span></span>
+                    <span class="mock-cell-num" style="color: var(--color-success);">+25</span>
+                    <span class="mock-cell-muted">Ana Depo</span>
                     <span class="mock-cell-muted">admin</span>
                   </div>
                   <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
-                    <span class="mock-cell-muted">Apr 09, 13:18</span>
-                    <span class="mock-cell-primary">Cable 5mm</span>
-                    <span><span class="mock-badge-red">OUT</span></span>
-                    <span class="mock-cell-num" style="color: var(--color-danger);">-50</span>
-                    <span class="mock-cell-muted">WH-Ankara</span>
+                    <span class="mock-cell-muted">20 Nis, 13:18</span>
+                    <span class="mock-cell-primary">Akıllı Telefon</span>
+                    <span><span class="mock-badge-red">ÇIKIŞ</span></span>
+                    <span class="mock-cell-num" style="color: var(--color-danger);">-18</span>
+                    <span class="mock-cell-muted">Şube Deposu</span>
                     <span class="mock-cell-muted">user2</span>
                   </div>
                   <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
-                    <span class="mock-cell-muted">Apr 09, 12:05</span>
-                    <span class="mock-cell-primary">Bolt Set M8</span>
+                    <span class="mock-cell-muted">20 Nis, 12:05</span>
+                    <span class="mock-cell-primary">Basic T-Shirt</span>
                     <span><span class="mock-badge-blue">TRANSFER</span></span>
-                    <span class="mock-cell-num">200</span>
-                    <span class="mock-cell-muted">IST → IZM</span>
+                    <span class="mock-cell-num">50</span>
+                    <span class="mock-cell-muted">İST → ANK</span>
                     <span class="mock-cell-muted">admin</span>
                   </div>
                   <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
-                    <span class="mock-cell-muted">Apr 09, 10:47</span>
-                    <span class="mock-cell-primary">Safety Valve 3/4"</span>
-                    <span><span class="mock-badge-yellow-sm">ADJUST</span></span>
+                    <span class="mock-cell-muted">20 Nis, 10:47</span>
+                    <span class="mock-cell-primary">Süzme Bal 1kg</span>
+                    <span><span class="mock-badge-yellow-sm">DÜZELTME</span></span>
                     <span class="mock-cell-num" style="color: var(--color-warning);">-3</span>
-                    <span class="mock-cell-muted">WH-Istanbul</span>
+                    <span class="mock-cell-muted">Ana Depo</span>
                     <span class="mock-cell-muted">user3</span>
                   </div>
                   <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
-                    <span class="mock-cell-muted">Apr 09, 09:22</span>
-                    <span class="mock-cell-primary">Steel Bracket A</span>
-                    <span><span class="mock-badge-purple">RETURN</span></span>
-                    <span class="mock-cell-num" style="color: var(--color-info);">+15</span>
-                    <span class="mock-cell-muted">WH-Istanbul</span>
+                    <span class="mock-cell-muted">20 Nis, 09:22</span>
+                    <span class="mock-cell-primary">Bluetooth Kulaklık</span>
+                    <span><span class="mock-badge-purple">İADE</span></span>
+                    <span class="mock-cell-num" style="color: var(--color-info);">+5</span>
+                    <span class="mock-cell-muted">E-Ticaret Deposu</span>
                     <span class="mock-cell-muted">admin</span>
                   </div>
                 </div>
@@ -386,17 +386,17 @@ const { lang } = Astro.props;
             <div class="demo-panel" id="tab-reports" role="tabpanel" aria-labelledby="tab-btn-reports">
               <div class="p-5 space-y-5">
                 <div class="flex items-center justify-between">
-                  <h3 class="mock-page-title">Reports & Analytics</h3>
+                  <h3 class="mock-page-title">Raporlar & Analitik</h3>
                   <div class="flex gap-2">
-                    <span class="mock-filter-btn mock-filter-active">Weekly</span>
-                    <span class="mock-filter-btn">Monthly</span>
-                    <span class="mock-filter-btn">Export CSV</span>
+                    <span class="mock-filter-btn mock-filter-active">Haftalık</span>
+                    <span class="mock-filter-btn">Aylık</span>
+                    <span class="mock-filter-btn">CSV İndir</span>
                   </div>
                 </div>
 
                 <!-- Chart area -->
                 <div class="rounded-lg border border-[var(--color-dark-border)] bg-[var(--color-dark-surface)] p-4">
-                  <p style="font-family: var(--font-heading); font-size: 12px; font-weight: 600; color: var(--color-dark-text-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;">Stock Movement Volume — Last 7 Days</p>
+                  <p style="font-family: var(--font-heading); font-size: 12px; font-weight: 600; color: var(--color-dark-text-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;">Stok Hareket Hacmi — Son 7 Gün</p>
                   <!-- CSS bar chart -->
                   <div class="mock-chart-wrap" aria-label="Bar chart showing stock movements over last 7 days">
                     <div class="mock-chart-bar-group">
@@ -404,60 +404,60 @@ const { lang } = Astro.props;
                         <span class="mock-bar-in" style="height: 60%"></span>
                         <span class="mock-bar-out" style="height: 30%"></span>
                       </div>
-                      <span class="mock-bar-label">Mon</span>
+                      <span class="mock-bar-label">Pzt</span>
                     </div>
                     <div class="mock-chart-bar-group">
                       <div class="mock-bar-stack">
                         <span class="mock-bar-in" style="height: 80%"></span>
                         <span class="mock-bar-out" style="height: 50%"></span>
                       </div>
-                      <span class="mock-bar-label">Tue</span>
+                      <span class="mock-bar-label">Sal</span>
                     </div>
                     <div class="mock-chart-bar-group">
                       <div class="mock-bar-stack">
                         <span class="mock-bar-in" style="height: 45%"></span>
                         <span class="mock-bar-out" style="height: 65%"></span>
                       </div>
-                      <span class="mock-bar-label">Wed</span>
+                      <span class="mock-bar-label">Çar</span>
                     </div>
                     <div class="mock-chart-bar-group">
                       <div class="mock-bar-stack">
                         <span class="mock-bar-in" style="height: 90%"></span>
                         <span class="mock-bar-out" style="height: 40%"></span>
                       </div>
-                      <span class="mock-bar-label">Thu</span>
+                      <span class="mock-bar-label">Per</span>
                     </div>
                     <div class="mock-chart-bar-group">
                       <div class="mock-bar-stack">
                         <span class="mock-bar-in" style="height: 70%"></span>
                         <span class="mock-bar-out" style="height: 55%"></span>
                       </div>
-                      <span class="mock-bar-label">Fri</span>
+                      <span class="mock-bar-label">Cum</span>
                     </div>
                     <div class="mock-chart-bar-group">
                       <div class="mock-bar-stack">
                         <span class="mock-bar-in" style="height: 35%"></span>
                         <span class="mock-bar-out" style="height: 20%"></span>
                       </div>
-                      <span class="mock-bar-label">Sat</span>
+                      <span class="mock-bar-label">Cmt</span>
                     </div>
                     <div class="mock-chart-bar-group">
                       <div class="mock-bar-stack">
                         <span class="mock-bar-in" style="height: 55%"></span>
                         <span class="mock-bar-out" style="height: 35%"></span>
                       </div>
-                      <span class="mock-bar-label">Sun</span>
+                      <span class="mock-bar-label">Paz</span>
                     </div>
                   </div>
                   <!-- Chart legend -->
                   <div class="flex items-center gap-4 mt-3">
                     <div class="flex items-center gap-1.5">
                       <span class="w-2.5 h-2.5 rounded-sm" style="background: var(--color-success); display: block;"></span>
-                      <span style="font-size: 11px; color: var(--color-dark-text-muted);">Stock In</span>
+                      <span style="font-size: 11px; color: var(--color-dark-text-muted);">Stok Giriş</span>
                     </div>
                     <div class="flex items-center gap-1.5">
                       <span class="w-2.5 h-2.5 rounded-sm" style="background: var(--color-danger); display: block;"></span>
-                      <span style="font-size: 11px; color: var(--color-dark-text-muted);">Stock Out</span>
+                      <span style="font-size: 11px; color: var(--color-dark-text-muted);">Stok Çıkış</span>
                     </div>
                   </div>
                 </div>
@@ -465,23 +465,23 @@ const { lang } = Astro.props;
                 <!-- Summary stats -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
                   <div class="mock-report-stat">
-                    <span class="mock-report-stat-num" style="color: var(--color-success);">2,847</span>
-                    <span class="mock-report-stat-label">Total IN</span>
+                    <span class="mock-report-stat-num" style="color: var(--color-success);">1,284</span>
+                    <span class="mock-report-stat-label">Toplam Giriş</span>
                     <span class="mock-report-stat-delta" style="color: var(--color-success);">+12.4%</span>
                   </div>
                   <div class="mock-report-stat">
-                    <span class="mock-report-stat-num" style="color: var(--color-danger);">1,623</span>
-                    <span class="mock-report-stat-label">Total OUT</span>
+                    <span class="mock-report-stat-num" style="color: var(--color-danger);">876</span>
+                    <span class="mock-report-stat-label">Toplam Çıkış</span>
                     <span class="mock-report-stat-delta" style="color: var(--color-danger);">-3.1%</span>
                   </div>
                   <div class="mock-report-stat">
-                    <span class="mock-report-stat-num" style="color: var(--color-brand-primary);">$84.2K</span>
-                    <span class="mock-report-stat-label">Stock Value</span>
+                    <span class="mock-report-stat-num" style="color: var(--color-brand-primary);">₺2.4M</span>
+                    <span class="mock-report-stat-label">Stok Değeri</span>
                     <span class="mock-report-stat-delta" style="color: var(--color-success);">+8.7%</span>
                   </div>
                   <div class="mock-report-stat">
-                    <span class="mock-report-stat-num" style="color: var(--color-info);">342</span>
-                    <span class="mock-report-stat-label">Movements/Day</span>
+                    <span class="mock-report-stat-num" style="color: var(--color-info);">156</span>
+                    <span class="mock-report-stat-label">Hareket/Gün</span>
                     <span class="mock-report-stat-delta" style="color: var(--color-success);">+5.2%</span>
                   </div>
                 </div>
