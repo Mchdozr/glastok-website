@@ -25,27 +25,34 @@ const T = (key: string) => t(lang, key as any);
       <div class="glass-card overflow-hidden border border-[var(--color-dark-border-light)]" style="border-radius: 12px;" id="demo-app">
 
         <!-- Browser top bar -->
-        <div class="flex items-center gap-3 px-5 py-3.5 border-b border-[var(--color-dark-border)] bg-[var(--color-dark-surface-alt)]">
-          <div class="flex items-center gap-2 shrink-0">
+        <div class="flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-3 sm:py-3.5 border-b border-[var(--color-dark-border)] bg-[var(--color-dark-surface-alt)]">
+          <!-- Mobile hamburger -->
+          <button id="demo-mobile-toggle" class="sm:hidden w-8 h-8 flex items-center justify-center rounded-md border border-[var(--color-dark-border)] text-[var(--color-dark-text-muted)] hover:text-[var(--color-brand-primary)] hover:border-[var(--color-brand-primary)] transition-all shrink-0" aria-label="Toggle menu">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <div class="hidden sm:flex items-center gap-2 shrink-0">
             <span class="w-3 h-3 rounded-full bg-[var(--color-danger)] opacity-80 block"></span>
             <span class="w-3 h-3 rounded-full bg-[var(--color-warning)] opacity-80 block"></span>
             <span class="w-3 h-3 rounded-full bg-[var(--color-success)] opacity-80 block"></span>
           </div>
           <div class="flex-1 flex items-center gap-2 bg-[var(--color-dark-bg)] border border-[var(--color-dark-border)] rounded-md px-3 py-1.5 max-w-xs mx-auto">
             <svg class="w-3 h-3 text-[var(--color-dark-text-muted)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-            <span id="demo-address-bar" style="font-family: var(--font-mono); font-size: 11px; color: var(--color-dark-text-muted);">app.glastok.com/dashboard</span>
+            <span id="demo-address-bar" class="truncate" style="font-family: var(--font-mono); font-size: 11px; color: var(--color-dark-text-muted);">app.glastok.com/dashboard</span>
           </div>
-          <div class="flex items-center gap-2 shrink-0">
+          <div class="hidden sm:flex items-center gap-2 shrink-0">
             <span class="w-5 h-5 rounded bg-[var(--color-dark-border)] block opacity-50"></span>
             <span class="w-5 h-5 rounded bg-[var(--color-dark-border)] block opacity-50"></span>
           </div>
         </div>
 
         <!-- App shell -->
-        <div class="flex min-h-[520px] bg-[var(--color-dark-bg)]">
+        <div class="relative flex min-h-[360px] sm:min-h-[520px] bg-[var(--color-dark-bg)]" id="demo-shell">
+
+          <!-- Mobile sidebar backdrop -->
+          <div id="demo-backdrop" class="sm:hidden absolute inset-0 bg-black/60 z-10 hidden" style="backdrop-filter: blur(2px);"></div>
 
           <!-- Sidebar -->
-          <aside class="hidden sm:flex flex-col w-[200px] shrink-0 border-r border-[var(--color-dark-border)] bg-[var(--color-dark-surface)] py-4">
+          <aside id="demo-sidebar-aside" class="demo-sidebar-aside flex-col w-[200px] shrink-0 border-r border-[var(--color-dark-border)] bg-[var(--color-dark-surface)] py-4">
             <div class="flex items-center gap-2 px-4 mb-6">
               <span class="w-6 h-6 rounded bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0">
                 <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="var(--color-dark-bg)"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
@@ -395,17 +402,72 @@ const T = (key: string) => t(lang, key as any);
 
   .scrollbar-hidden { -ms-overflow-style: none; scrollbar-width: none; }
   .scrollbar-hidden::-webkit-scrollbar { display: none; }
+
+  /* Sidebar responsive */
+  .demo-sidebar-aside {
+    display: none;
+  }
+  @media (min-width: 640px) {
+    .demo-sidebar-aside {
+      display: flex;
+    }
+  }
+  @media (max-width: 639px) {
+    .demo-sidebar-aside {
+      display: flex;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 20;
+      transform: translateX(-100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 4px 0 24px rgba(0,0,0,0.4);
+      overflow-y: auto;
+    }
+    .demo-sidebar-aside.mobile-open {
+      transform: translateX(0);
+    }
+    .mock-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .mock-table-head, .mock-table-row {
+      min-width: 500px;
+    }
+  }
 </style>
 
 <script>
   (function() {
     const sidebar = document.getElementById('demo-sidebar');
+    const sidebarAside = document.getElementById('demo-sidebar-aside');
     const demoApp = document.getElementById('demo-app');
     const addressBar = document.getElementById('demo-address-bar');
+    const mobileToggle = document.getElementById('demo-mobile-toggle');
+    const backdrop = document.getElementById('demo-backdrop');
     if (!sidebar || !demoApp) return;
 
     const navItems = sidebar.querySelectorAll<HTMLElement>('.sidebar-nav-item[data-panel]');
     const panels = demoApp.querySelectorAll<HTMLElement>('.demo-panel');
+
+    function closeMobileSidebar() {
+      sidebarAside?.classList.remove('mobile-open');
+      backdrop?.classList.add('hidden');
+    }
+
+    function openMobileSidebar() {
+      sidebarAside?.classList.add('mobile-open');
+      backdrop?.classList.remove('hidden');
+    }
+
+    mobileToggle?.addEventListener('click', () => {
+      const isOpen = sidebarAside?.classList.contains('mobile-open');
+      if (isOpen) closeMobileSidebar();
+      else openMobileSidebar();
+    });
+
+    backdrop?.addEventListener('click', closeMobileSidebar);
 
     function activatePanel(panelId: string) {
       navItems.forEach(item => item.classList.remove('sidebar-nav-active'));
@@ -427,6 +489,7 @@ const T = (key: string) => t(lang, key as any);
       item.addEventListener('click', () => {
         const panelId = item.dataset.panel;
         if (panelId) activatePanel(panelId);
+        closeMobileSidebar();
       });
     });
   })();
