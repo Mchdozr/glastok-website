@@ -111,9 +111,10 @@ const {
       });
     });
 
-    // Smooth anchor scrolling
+    // Smooth anchor scrolling (skip mobile-nav-link — handled separately)
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', (e) => {
+        if (anchor.classList.contains('mobile-nav-link')) return;
         e.preventDefault();
         const href = (anchor as HTMLAnchorElement).getAttribute('href');
         if (href && href !== '#') {

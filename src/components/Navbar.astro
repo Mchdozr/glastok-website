@@ -21,7 +21,7 @@ const navLinks = [
 <!-- Tailwind purge safelist (hidden, never rendered) -->
 <span class="hidden nav-blur border-dark-border"></span>
 
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-[background,border,box-shadow] duration-500">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
       <!-- Logo -->
@@ -76,32 +76,32 @@ const navLinks = [
       </button>
     </div>
   </div>
+</nav>
 
-  <!-- Mobile overlay -->
-  <div id="mobile-menu" class="mobile-menu-panel lg:hidden">
-    <div class="flex flex-col items-center justify-center h-full gap-8 pb-20">
-      {navLinks.map((link) => (
-        <a
-          href={link.href}
-          class="mobile-nav-link font-heading text-2xl font-bold tracking-[4px] uppercase text-dark-text-muted hover:text-brand-primary transition-colors duration-300"
-        >
-          {link.label}
-        </a>
-      ))}
-      <div class="flex items-center gap-4 mt-4">
-        <a
-          href={otherLangPath}
-          class="w-12 h-12 flex items-center justify-center border border-dark-border-light text-dark-text-muted font-heading text-sm font-bold tracking-wider hover:border-brand-primary hover:text-brand-primary transition-all duration-300"
-        >
-          {t(lang, 'nav.language')}
-        </a>
-        <a href="#contact" class="btn-primary">
-          {t(lang, 'nav.requestDemo')}
-        </a>
-      </div>
+<!-- Mobile overlay — OUTSIDE nav to avoid transform containing block issue -->
+<div id="mobile-menu" class="mobile-menu-panel lg:hidden">
+  <div class="flex flex-col items-center justify-center h-full gap-8 pb-20">
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class="mobile-nav-link font-heading text-2xl font-bold tracking-[4px] uppercase text-dark-text-muted hover:text-brand-primary transition-colors duration-300"
+      >
+        {link.label}
+      </a>
+    ))}
+    <div class="flex items-center gap-4 mt-4">
+      <a
+        href={otherLangPath}
+        class="w-12 h-12 flex items-center justify-center border border-dark-border-light text-dark-text-muted font-heading text-sm font-bold tracking-wider hover:border-brand-primary hover:text-brand-primary transition-all duration-300"
+      >
+        {t(lang, 'nav.language')}
+      </a>
+      <a href="#contact" class="mobile-nav-link btn-primary">
+        {t(lang, 'nav.requestDemo')}
+      </a>
     </div>
   </div>
-</nav>
+</div>
 
 <script>
   const navbar = document.getElementById('navbar');
@@ -111,9 +111,10 @@ const navLinks = [
   const closeIcon = document.getElementById('close-icon');
   let lastScroll = 0;
   let isMenuOpen = false;
+  let navHidden = false;
 
-  // Scroll behavior
   window.addEventListener('scroll', () => {
+    if (isMenuOpen) return;
     const currentScroll = window.scrollY;
 
     if (navbar) {
@@ -123,46 +124,58 @@ const navLinks = [
         navbar.classList.remove('nav-blur', 'border-b', 'border-dark-border');
       }
 
-      // Hide/show on scroll direction
-      if (currentScroll > 300 && !isMenuOpen) {
-        if (currentScroll > lastScroll) {
+      if (currentScroll > 300) {
+        if (currentScroll > lastScroll && !navHidden) {
+          navHidden = true;
+          navbar.style.transition = 'transform 0.4s ease';
           navbar.style.transform = 'translateY(-100%)';
-        } else {
-          navbar.style.transform = 'translateY(0)';
+        } else if (currentScroll < lastScroll && navHidden) {
+          navHidden = false;
+          navbar.style.transition = 'transform 0.4s ease';
+          navbar.style.transform = '';
         }
+      } else if (navHidden) {
+        navHidden = false;
+        navbar.style.transform = '';
       }
     }
 
     lastScroll = currentScroll;
   });
 
-  const closeMenu = () => {
+  function openMenu() {
+    isMenuOpen = true;
+    mobileMenu?.classList.add('open');
+    menuIcon?.classList.add('hidden');
+    closeIcon?.classList.remove('hidden');
+    menuToggle?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    if (navbar && navHidden) {
+      navHidden = false;
+      navbar.style.transition = 'transform 0.3s ease';
+      navbar.style.transform = '';
+    }
+  }
+
+  function closeMenu() {
     isMenuOpen = false;
     mobileMenu?.classList.remove('open');
     menuIcon?.classList.remove('hidden');
     closeIcon?.classList.add('hidden');
     menuToggle?.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
-  };
+  }
 
-  // Mobile menu toggle
-  menuToggle?.addEventListener('click', () => {
-    isMenuOpen = !isMenuOpen;
-    if (isMenuOpen) {
-      mobileMenu?.classList.add('open');
-      if (navbar) navbar.style.transform = 'translateY(0)';
-    } else {
-      mobileMenu?.classList.remove('open');
-    }
-    menuIcon?.classList.toggle('hidden');
-    closeIcon?.classList.toggle('hidden');
-    menuToggle.setAttribute('aria-expanded', String(isMenuOpen));
-    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+  menuToggle?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (isMenuOpen) closeMenu();
+    else openMenu();
   });
 
-  // Close mobile menu on link click
-  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
-    link.addEventListener('click', closeMenu);
+  document.querySelectorAll('#mobile-menu .mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      closeMenu();
+    });
   });
 </script>
 
@@ -174,11 +187,11 @@ const navLinks = [
     bottom: 0;
     left: 0;
     background: #0a0a0a;
-    z-index: 40;
+    z-index: 45;
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
-    transition: visibility 0.35s, opacity 0.35s ease;
+    transition: visibility 0.3s, opacity 0.3s ease;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
