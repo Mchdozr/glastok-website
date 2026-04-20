@@ -150,6 +150,7 @@ const navLinks = [
     isMenuOpen = !isMenuOpen;
     if (isMenuOpen) {
       mobileMenu?.classList.add('open');
+      if (navbar) navbar.style.transform = 'translateY(0)';
     } else {
       mobileMenu?.classList.remove('open');
     }
@@ -168,19 +169,23 @@ const navLinks = [
 <style>
   .mobile-menu-panel {
     position: fixed;
-    inset: 0;
     top: 5rem;
-    background: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #0a0a0a;
     z-index: 40;
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0.4s, opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    transition: visibility 0.35s, opacity 0.35s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .mobile-menu-panel.open {
     visibility: visible;
     opacity: 1;
+    pointer-events: auto;
   }
   @media (min-width: 1024px) {
     .mobile-menu-panel {
