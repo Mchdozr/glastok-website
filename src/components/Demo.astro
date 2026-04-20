@@ -9,12 +9,10 @@ const { lang } = Astro.props;
 ---
 
 <section id="demo" class="relative py-24 md:py-32 overflow-hidden">
-  <!-- Background grid -->
   <div class="absolute inset-0 grid-bg opacity-40 pointer-events-none"></div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
 
-    <!-- Section header -->
     <div class="text-center mb-14 reveal">
       <span class="label-tag block mb-4">{t(lang, 'demo.tag')}</span>
       <h2 class="heading-lg text-4xl md:text-5xl text-[var(--color-dark-text)]">
@@ -22,76 +20,22 @@ const { lang } = Astro.props;
       </h2>
     </div>
 
-    <!-- Demo container -->
     <div class="reveal reveal-delay-2">
-
-      <!-- Tab navigation -->
-      <div class="flex items-center gap-1 mb-0 overflow-x-auto scrollbar-hidden" role="tablist" aria-label="Demo tabs" id="demo-tablist">
-        <button
-          class="demo-tab active"
-          role="tab"
-          aria-selected="true"
-          aria-controls="tab-dashboard"
-          id="tab-btn-dashboard"
-          data-tab="dashboard"
-        >
-          <span class="demo-tab-dot"></span>
-          {t(lang, 'demo.tab.dashboard')}
-        </button>
-        <button
-          class="demo-tab"
-          role="tab"
-          aria-selected="false"
-          aria-controls="tab-products"
-          id="tab-btn-products"
-          data-tab="products"
-        >
-          <span class="demo-tab-dot"></span>
-          {t(lang, 'demo.tab.products')}
-        </button>
-        <button
-          class="demo-tab"
-          role="tab"
-          aria-selected="false"
-          aria-controls="tab-movements"
-          id="tab-btn-movements"
-          data-tab="movements"
-        >
-          <span class="demo-tab-dot"></span>
-          {t(lang, 'demo.tab.movements')}
-        </button>
-        <button
-          class="demo-tab"
-          role="tab"
-          aria-selected="false"
-          aria-controls="tab-reports"
-          id="tab-btn-reports"
-          data-tab="reports"
-        >
-          <span class="demo-tab-dot"></span>
-          {t(lang, 'demo.tab.reports')}
-        </button>
-      </div>
-
-      <!-- Browser window chrome -->
-      <div class="glass-card overflow-hidden border border-[var(--color-dark-border-light)]" style="border-radius: 0 12px 12px 12px;">
+      <div class="glass-card overflow-hidden border border-[var(--color-dark-border-light)]" style="border-radius: 12px;" id="demo-app">
 
         <!-- Browser top bar -->
         <div class="flex items-center gap-3 px-5 py-3.5 border-b border-[var(--color-dark-border)] bg-[var(--color-dark-surface-alt)]">
-          <!-- Traffic lights -->
           <div class="flex items-center gap-2 shrink-0">
             <span class="w-3 h-3 rounded-full bg-[var(--color-danger)] opacity-80 block"></span>
             <span class="w-3 h-3 rounded-full bg-[var(--color-warning)] opacity-80 block"></span>
             <span class="w-3 h-3 rounded-full bg-[var(--color-success)] opacity-80 block"></span>
           </div>
-          <!-- Address bar -->
           <div class="flex-1 flex items-center gap-2 bg-[var(--color-dark-bg)] border border-[var(--color-dark-border)] rounded-md px-3 py-1.5 max-w-xs mx-auto">
             <svg class="w-3 h-3 text-[var(--color-dark-text-muted)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
             </svg>
-            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-dark-text-muted);">app.glastok.com/dashboard</span>
+            <span id="demo-address-bar" style="font-family: var(--font-mono); font-size: 11px; color: var(--color-dark-text-muted);">app.glastok.com/dashboard</span>
           </div>
-          <!-- Right icons placeholder -->
           <div class="flex items-center gap-2 shrink-0">
             <span class="w-5 h-5 rounded bg-[var(--color-dark-border)] block opacity-50"></span>
             <span class="w-5 h-5 rounded bg-[var(--color-dark-border)] block opacity-50"></span>
@@ -103,7 +47,6 @@ const { lang } = Astro.props;
 
           <!-- Sidebar -->
           <aside class="hidden sm:flex flex-col w-[200px] shrink-0 border-r border-[var(--color-dark-border)] bg-[var(--color-dark-surface)] py-4">
-            <!-- Logo row -->
             <div class="flex items-center gap-2 px-4 mb-6">
               <span class="w-6 h-6 rounded bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0">
                 <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="var(--color-dark-bg)">
@@ -112,61 +55,55 @@ const { lang } = Astro.props;
               </span>
               <span style="font-family: var(--font-heading); font-weight: 700; font-size: 13px; color: var(--color-dark-text); letter-spacing: 1px;">GLASTOK</span>
             </div>
-            <!-- Nav items (decorative mock) -->
-            <nav class="flex flex-col gap-0.5 px-2" aria-hidden="true">
-              <!-- Ana Menü -->
-              <span class="sidebar-nav-item sidebar-nav-active">
+            <nav class="flex flex-col gap-0.5 px-2 overflow-y-auto" id="demo-sidebar">
+              <span class="sidebar-nav-item sidebar-nav-active" data-panel="dashboard" data-url="app.glastok.com/dashboard">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
                 Ana Sayfa
               </span>
-              <span class="sidebar-nav-item">
+              <span class="sidebar-nav-item" data-panel="products" data-url="app.glastok.com/products">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                 Ürünler
               </span>
-              <span class="sidebar-nav-item">
+              <span class="sidebar-nav-item" data-panel="categories" data-url="app.glastok.com/categories">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z"/></svg>
                 Kategoriler
               </span>
-              <span class="sidebar-nav-item">
+              <span class="sidebar-nav-item" data-panel="warehouses" data-url="app.glastok.com/warehouses">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
                 Depolar
               </span>
-              <!-- Ayırıcı -->
               <div class="my-1.5 mx-1 h-px bg-[var(--color-dark-border)] opacity-50"></div>
-              <span class="sidebar-nav-item">
+              <span class="sidebar-nav-item" data-panel="movements" data-url="app.glastok.com/stock-movements">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
                 Stok Hareketleri
               </span>
-              <span class="sidebar-nav-item">
+              <span class="sidebar-nav-item" data-panel="stock-report" data-url="app.glastok.com/reports/stock">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                 Stok Raporu
               </span>
-              <span class="sidebar-nav-item">
+              <span class="sidebar-nav-item" data-panel="advanced-reports" data-url="app.glastok.com/reports/advanced">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
                 Gelişmiş Raporlar
               </span>
-              <!-- Ayırıcı -->
               <div class="my-1.5 mx-1 h-px bg-[var(--color-dark-border)] opacity-50"></div>
-              <span class="sidebar-nav-item">
+              <span class="sidebar-nav-item" data-panel="settings" data-url="app.glastok.com/settings">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                 Ayarlar
               </span>
-              <!-- Admin bölümü -->
               <div class="my-1.5 mx-1 h-px bg-[var(--color-dark-border)] opacity-50"></div>
-              <span class="sidebar-nav-item">
+              <span class="sidebar-nav-item" data-panel="import" data-url="app.glastok.com/admin/import">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
                 İçe Aktarma
               </span>
-              <span class="sidebar-nav-item">
+              <span class="sidebar-nav-item" data-panel="users" data-url="app.glastok.com/admin/users">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
                 Kullanıcılar
               </span>
-              <span class="sidebar-nav-item">
+              <span class="sidebar-nav-item" data-panel="activity-log" data-url="app.glastok.com/admin/activity-log">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                 Aktivite Takip
               </span>
             </nav>
-            <!-- Bottom user row -->
             <div class="mt-auto px-3 pt-4 border-t border-[var(--color-dark-border)]">
               <div class="flex items-center gap-2">
                 <div class="w-7 h-7 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0">
@@ -180,80 +117,31 @@ const { lang } = Astro.props;
             </div>
           </aside>
 
-          <!-- Tab content panels -->
+          <!-- Content panels -->
           <div class="flex-1 overflow-auto">
 
-            <!-- ===== DASHBOARD TAB ===== -->
-            <div class="demo-panel active" id="tab-dashboard" role="tabpanel" aria-labelledby="tab-btn-dashboard">
+            <!-- DASHBOARD -->
+            <div class="demo-panel active" id="panel-dashboard">
               <div class="p-5 space-y-5">
-                <!-- Page title row -->
                 <div class="flex items-center justify-between">
-                  <div>
-                    <h3 class="mock-page-title">Dashboard</h3>
-                    <p class="mock-page-sub">Hoş geldiniz, Admin</p>
-                  </div>
+                  <div><h3 class="mock-page-title">Dashboard</h3><p class="mock-page-sub">Hoş geldiniz, Admin</p></div>
                   <span class="mock-badge-yellow">Canlı</span>
                 </div>
-
-                <!-- Stat cards -->
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                  <div class="mock-stat-card" style="border-left-color: var(--color-brand-primary);">
-                    <span class="mock-stat-num">847</span>
-                    <span class="mock-stat-label">Toplam Ürün</span>
-                  </div>
-                  <div class="mock-stat-card" style="border-left-color: var(--color-info);">
-                    <span class="mock-stat-num">3</span>
-                    <span class="mock-stat-label">Depo</span>
-                  </div>
-                  <div class="mock-stat-card" style="border-left-color: var(--color-success);">
-                    <span class="mock-stat-num">156</span>
-                    <span class="mock-stat-label">Bugünkü Hareketler</span>
-                  </div>
-                  <div class="mock-stat-card" style="border-left-color: var(--color-danger);">
-                    <span class="mock-stat-num">12</span>
-                    <span class="mock-stat-label">Düşük Stok Uyarısı</span>
-                  </div>
+                  <div class="mock-stat-card" style="border-left-color: var(--color-brand-primary);"><span class="mock-stat-num">847</span><span class="mock-stat-label">Toplam Ürün</span></div>
+                  <div class="mock-stat-card" style="border-left-color: var(--color-info);"><span class="mock-stat-num">3</span><span class="mock-stat-label">Depo</span></div>
+                  <div class="mock-stat-card" style="border-left-color: var(--color-success);"><span class="mock-stat-num">156</span><span class="mock-stat-label">Bugünkü Hareketler</span></div>
+                  <div class="mock-stat-card" style="border-left-color: var(--color-danger);"><span class="mock-stat-num">12</span><span class="mock-stat-label">Düşük Stok Uyarısı</span></div>
                 </div>
-
-                <!-- Recent movements table -->
                 <div>
-                  <div class="flex items-center justify-between mb-2">
-                    <span class="mock-table-header-label">Son Hareketler</span>
-                    <span class="mock-link">Tümünü Gör</span>
-                  </div>
+                  <div class="flex items-center justify-between mb-2"><span class="mock-table-header-label">Son Hareketler</span><span class="mock-link">Tümünü Gör</span></div>
                   <div class="mock-table-wrap">
-                    <div class="mock-table-head">
-                      <span>Ürün</span>
-                      <span>Tip</span>
-                      <span>Miktar</span>
-                      <span>Depo</span>
-                      <span>Saat</span>
-                    </div>
-                    <div class="mock-table-row">
-                      <span class="mock-cell-primary">PRD-001 — Laptop</span>
-                      <span><span class="mock-badge-green">GİRİŞ</span></span>
-                      <span class="mock-cell-num">+25</span>
-                      <span class="mock-cell-muted">Ana Depo</span>
-                      <span class="mock-cell-muted">14:32</span>
-                    </div>
-                    <div class="mock-table-row">
-                      <span class="mock-cell-primary">PRD-002 — Akıllı Telefon</span>
-                      <span><span class="mock-badge-red">ÇIKIŞ</span></span>
-                      <span class="mock-cell-num">-18</span>
-                      <span class="mock-cell-muted">Şube Deposu</span>
-                      <span class="mock-cell-muted">13:18</span>
-                    </div>
-                    <div class="mock-table-row">
-                      <span class="mock-cell-primary">PRD-008 — Basic T-Shirt</span>
-                      <span><span class="mock-badge-blue">TRANSFER</span></span>
-                      <span class="mock-cell-num">50</span>
-                      <span class="mock-cell-muted">İST → ANK</span>
-                      <span class="mock-cell-muted">12:05</span>
-                    </div>
+                    <div class="mock-table-head"><span>Ürün</span><span>Tip</span><span>Miktar</span><span>Depo</span><span>Saat</span></div>
+                    <div class="mock-table-row"><span class="mock-cell-primary">PRD-001 — Laptop</span><span><span class="mock-badge-green">GİRİŞ</span></span><span class="mock-cell-num">+25</span><span class="mock-cell-muted">Ana Depo</span><span class="mock-cell-muted">14:32</span></div>
+                    <div class="mock-table-row"><span class="mock-cell-primary">PRD-002 — Akıllı Telefon</span><span><span class="mock-badge-red">ÇIKIŞ</span></span><span class="mock-cell-num">-18</span><span class="mock-cell-muted">Şube Deposu</span><span class="mock-cell-muted">13:18</span></div>
+                    <div class="mock-table-row"><span class="mock-cell-primary">PRD-008 — Basic T-Shirt</span><span><span class="mock-badge-blue">TRANSFER</span></span><span class="mock-cell-num">50</span><span class="mock-cell-muted">İST → ANK</span><span class="mock-cell-muted">12:05</span></div>
                   </div>
                 </div>
-
-                <!-- Alert strip -->
                 <div class="mock-alert-strip">
                   <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                   12 ürün minimum stok seviyesinin altında — <span style="color: var(--color-brand-primary); font-weight: 600;">Uyarıları Gör</span>
@@ -261,662 +149,287 @@ const { lang } = Astro.props;
               </div>
             </div>
 
-            <!-- ===== PRODUCTS TAB ===== -->
-            <div class="demo-panel" id="tab-products" role="tabpanel" aria-labelledby="tab-btn-products">
+            <!-- ÜRÜNLER -->
+            <div class="demo-panel" id="panel-products">
               <div class="p-5 space-y-4">
-                <div class="flex items-center justify-between">
-                  <h3 class="mock-page-title">Ürünler</h3>
-                  <button class="mock-btn-primary">+ Ürün Ekle</button>
-                </div>
-
-                <!-- Search + filters -->
+                <div class="flex items-center justify-between"><h3 class="mock-page-title">Ürünler</h3><button class="mock-btn-primary">+ Ürün Ekle</button></div>
                 <div class="flex gap-2">
-                  <div class="flex-1 flex items-center gap-2 mock-input-wrap">
-                    <svg class="w-3.5 h-3.5 shrink-0" style="color: var(--color-dark-text-muted)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    <span style="color: var(--color-dark-text-dim); font-size: 12px;">Ürün, barkod ara...</span>
-                  </div>
-                  <span class="mock-filter-btn">Kategori</span>
-                  <span class="mock-filter-btn">Depo</span>
+                  <div class="flex-1 flex items-center gap-2 mock-input-wrap"><svg class="w-3.5 h-3.5 shrink-0" style="color: var(--color-dark-text-muted)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg><span style="color: var(--color-dark-text-dim); font-size: 12px;">Ürün, barkod ara...</span></div>
+                  <span class="mock-filter-btn">Kategori</span><span class="mock-filter-btn">Depo</span>
                 </div>
-
-                <!-- Products table -->
                 <div class="mock-table-wrap">
-                  <div class="mock-table-head" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;">
-                    <span>Kod</span>
-                    <span>Ürün Adı</span>
-                    <span>Kategori</span>
-                    <span>Fiyat</span>
-                    <span>Stok</span>
-                    <span>Durum</span>
-                  </div>
-                  <div class="mock-table-row" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;">
-                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-001</span>
-                    <span class="mock-cell-primary">Laptop</span>
-                    <span><span class="mock-badge-outline">Elektronik</span></span>
-                    <span class="mock-cell-num">₺15.000</span>
-                    <span class="mock-cell-num">42</span>
-                    <span><span class="mock-badge-green">OK</span></span>
-                  </div>
-                  <div class="mock-table-row" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;">
-                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-002</span>
-                    <span class="mock-cell-primary">Akıllı Telefon</span>
-                    <span><span class="mock-badge-outline">Elektronik</span></span>
-                    <span class="mock-cell-num">₺8.500</span>
-                    <span class="mock-cell-num">3</span>
-                    <span><span class="mock-badge-red">LOW</span></span>
-                  </div>
-                  <div class="mock-table-row" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;">
-                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-005</span>
-                    <span class="mock-cell-primary">Zeytinyağı 1L</span>
-                    <span><span class="mock-badge-outline">Gıda</span></span>
-                    <span class="mock-cell-num">₺320</span>
-                    <span class="mock-cell-num">180</span>
-                    <span><span class="mock-badge-green">OK</span></span>
-                  </div>
-                  <div class="mock-table-row" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;">
-                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-009</span>
-                    <span class="mock-cell-primary">Slim Gömlek</span>
-                    <span><span class="mock-badge-outline">Giyim</span></span>
-                    <span class="mock-cell-num">₺450</span>
-                    <span class="mock-cell-num">0</span>
-                    <span><span class="mock-badge-dim">TÜKENDİ</span></span>
-                  </div>
+                  <div class="mock-table-head" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;"><span>Kod</span><span>Ürün Adı</span><span>Kategori</span><span>Fiyat</span><span>Stok</span><span>Durum</span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;"><span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-001</span><span class="mock-cell-primary">Laptop</span><span><span class="mock-badge-outline">Elektronik</span></span><span class="mock-cell-num">₺15.000</span><span class="mock-cell-num">42</span><span><span class="mock-badge-green">OK</span></span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;"><span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-002</span><span class="mock-cell-primary">Akıllı Telefon</span><span><span class="mock-badge-outline">Elektronik</span></span><span class="mock-cell-num">₺8.500</span><span class="mock-cell-num">3</span><span><span class="mock-badge-red">LOW</span></span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;"><span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-005</span><span class="mock-cell-primary">Zeytinyağı 1L</span><span><span class="mock-badge-outline">Gıda</span></span><span class="mock-cell-num">₺320</span><span class="mock-cell-num">180</span><span><span class="mock-badge-green">OK</span></span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 1fr 1.5fr 1fr 0.8fr 0.8fr 0.6fr;"><span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-009</span><span class="mock-cell-primary">Slim Gömlek</span><span><span class="mock-badge-outline">Giyim</span></span><span class="mock-cell-num">₺450</span><span class="mock-cell-num">0</span><span><span class="mock-badge-dim">TÜKENDİ</span></span></div>
                 </div>
-
-                <!-- Pagination row -->
-                <div class="flex items-center justify-between mt-2">
-                  <span style="font-size: 11px; color: var(--color-dark-text-muted);">1–4 / 847 ürün gösteriliyor</span>
-                  <div class="flex gap-1">
-                    <span class="mock-page-btn active">1</span>
-                    <span class="mock-page-btn">2</span>
-                    <span class="mock-page-btn">3</span>
-                    <span style="font-size: 11px; color: var(--color-dark-text-dim); padding: 0 4px;">...</span>
-                    <span class="mock-page-btn">212</span>
-                  </div>
-                </div>
+                <div class="flex items-center justify-between mt-2"><span style="font-size: 11px; color: var(--color-dark-text-muted);">1–4 / 847 ürün gösteriliyor</span><div class="flex gap-1"><span class="mock-page-btn active">1</span><span class="mock-page-btn">2</span><span class="mock-page-btn">3</span><span style="font-size: 11px; color: var(--color-dark-text-dim); padding: 0 4px;">...</span><span class="mock-page-btn">212</span></div></div>
               </div>
             </div>
 
-            <!-- ===== MOVEMENTS TAB ===== -->
-            <div class="demo-panel" id="tab-movements" role="tabpanel" aria-labelledby="tab-btn-movements">
+            <!-- KATEGORİLER -->
+            <div class="demo-panel" id="panel-categories">
               <div class="p-5 space-y-4">
-                <div class="flex items-center justify-between">
-                  <h3 class="mock-page-title">Stok Hareketleri</h3>
-                  <button class="mock-btn-primary">+ Yeni Hareket</button>
-                </div>
-
-                <!-- Filter bar -->
-                <div class="flex flex-wrap gap-2">
-                  <span class="mock-filter-btn mock-filter-active">Tüm Tipler</span>
-                  <span class="mock-filter-btn">Giriş</span>
-                  <span class="mock-filter-btn">Çıkış</span>
-                  <span class="mock-filter-btn">Transfer</span>
-                  <span class="mock-filter-btn">Düzeltme</span>
-                  <span class="mock-filter-btn">İade</span>
-                  <div class="ml-auto flex gap-2">
-                    <span class="mock-filter-btn">Tarih Aralığı</span>
-                    <span class="mock-filter-btn">Depo</span>
-                  </div>
-                </div>
-
-                <!-- Movements table -->
+                <div class="flex items-center justify-between"><div><h3 class="mock-page-title">Kategoriler</h3><p class="mock-page-sub">Ürün kategorilerini yönetin</p></div><button class="mock-btn-primary">+ Yeni Kategori</button></div>
                 <div class="mock-table-wrap">
-                  <div class="mock-table-head" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
-                    <span>Tarih</span>
-                    <span>Ürün</span>
-                    <span>Tip</span>
-                    <span>Miktar</span>
-                    <span>Depo</span>
-                    <span>Kullanıcı</span>
-                  </div>
-                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
-                    <span class="mock-cell-muted">20 Nis, 14:32</span>
-                    <span class="mock-cell-primary">Laptop</span>
-                    <span><span class="mock-badge-green">GİRİŞ</span></span>
-                    <span class="mock-cell-num" style="color: var(--color-success);">+25</span>
-                    <span class="mock-cell-muted">Ana Depo</span>
-                    <span class="mock-cell-muted">admin</span>
-                  </div>
-                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
-                    <span class="mock-cell-muted">20 Nis, 13:18</span>
-                    <span class="mock-cell-primary">Akıllı Telefon</span>
-                    <span><span class="mock-badge-red">ÇIKIŞ</span></span>
-                    <span class="mock-cell-num" style="color: var(--color-danger);">-18</span>
-                    <span class="mock-cell-muted">Şube Deposu</span>
-                    <span class="mock-cell-muted">user2</span>
-                  </div>
-                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
-                    <span class="mock-cell-muted">20 Nis, 12:05</span>
-                    <span class="mock-cell-primary">Basic T-Shirt</span>
-                    <span><span class="mock-badge-blue">TRANSFER</span></span>
-                    <span class="mock-cell-num">50</span>
-                    <span class="mock-cell-muted">İST → ANK</span>
-                    <span class="mock-cell-muted">admin</span>
-                  </div>
-                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
-                    <span class="mock-cell-muted">20 Nis, 10:47</span>
-                    <span class="mock-cell-primary">Süzme Bal 1kg</span>
-                    <span><span class="mock-badge-yellow-sm">DÜZELTME</span></span>
-                    <span class="mock-cell-num" style="color: var(--color-warning);">-3</span>
-                    <span class="mock-cell-muted">Ana Depo</span>
-                    <span class="mock-cell-muted">user3</span>
-                  </div>
-                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;">
-                    <span class="mock-cell-muted">20 Nis, 09:22</span>
-                    <span class="mock-cell-primary">Bluetooth Kulaklık</span>
-                    <span><span class="mock-badge-purple">İADE</span></span>
-                    <span class="mock-cell-num" style="color: var(--color-info);">+5</span>
-                    <span class="mock-cell-muted">E-Ticaret Deposu</span>
-                    <span class="mock-cell-muted">admin</span>
-                  </div>
+                  <div class="mock-table-head" style="grid-template-columns: 0.5fr 1.5fr 2fr 0.8fr 0.6fr;"><span>ID</span><span>Ad</span><span>Açıklama</span><span>Durum</span><span></span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.5fr 1.5fr 2fr 0.8fr 0.6fr;"><span class="mock-cell-num">1</span><span class="mock-cell-primary">Elektronik</span><span class="mock-cell-muted">Tüketici elektronik ürünleri</span><span><span class="mock-badge-green">Aktif</span></span><span class="flex gap-2"><span class="mock-link">✎</span><span class="mock-link" style="color: var(--color-danger);">✕</span></span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.5fr 1.5fr 2fr 0.8fr 0.6fr;"><span class="mock-cell-num">2</span><span class="mock-cell-primary">Gıda</span><span class="mock-cell-muted">Gıda ve içecek ürünleri</span><span><span class="mock-badge-green">Aktif</span></span><span class="flex gap-2"><span class="mock-link">✎</span><span class="mock-link" style="color: var(--color-danger);">✕</span></span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.5fr 1.5fr 2fr 0.8fr 0.6fr;"><span class="mock-cell-num">3</span><span class="mock-cell-primary">Giyim</span><span class="mock-cell-muted">Tekstil ve giyim ürünleri</span><span><span class="mock-badge-green">Aktif</span></span><span class="flex gap-2"><span class="mock-link">✎</span><span class="mock-link" style="color: var(--color-danger);">✕</span></span></div>
                 </div>
               </div>
             </div>
 
-            <!-- ===== REPORTS TAB ===== -->
-            <div class="demo-panel" id="tab-reports" role="tabpanel" aria-labelledby="tab-btn-reports">
+            <!-- DEPOLAR -->
+            <div class="demo-panel" id="panel-warehouses">
+              <div class="p-5 space-y-4">
+                <div class="flex items-center justify-between"><div><h3 class="mock-page-title">Depolar</h3><p class="mock-page-sub">Depo yönetimi</p></div><button class="mock-btn-primary">+ Yeni Depo</button></div>
+                <div class="mock-table-wrap">
+                  <div class="mock-table-head" style="grid-template-columns: 0.8fr 1.2fr 2fr 0.7fr 0.5fr;"><span>Kod</span><span>Ad</span><span>Adres</span><span>Durum</span><span></span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.2fr 2fr 0.7fr 0.5fr;"><span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">DEPO-001</span><span class="mock-cell-primary">Ana Depo</span><span class="mock-cell-muted">İstanbul, Tuzla Organize Sanayi Bölgesi</span><span><span class="mock-badge-green">Aktif</span></span><span class="flex gap-2"><span class="mock-link">✎</span><span class="mock-link" style="color: var(--color-danger);">✕</span></span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.2fr 2fr 0.7fr 0.5fr;"><span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">DEPO-002</span><span class="mock-cell-primary">Şube Deposu</span><span class="mock-cell-muted">Ankara, Ostim Organize Sanayi Bölgesi</span><span><span class="mock-badge-green">Aktif</span></span><span class="flex gap-2"><span class="mock-link">✎</span><span class="mock-link" style="color: var(--color-danger);">✕</span></span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.2fr 2fr 0.7fr 0.5fr;"><span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">DEPO-003</span><span class="mock-cell-primary">E-Ticaret Deposu</span><span class="mock-cell-muted">İstanbul, Esenyurt Lojistik Merkez</span><span><span class="mock-badge-green">Aktif</span></span><span class="flex gap-2"><span class="mock-link">✎</span><span class="mock-link" style="color: var(--color-danger);">✕</span></span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STOK HAREKETLERİ -->
+            <div class="demo-panel" id="panel-movements">
+              <div class="p-5 space-y-4">
+                <div class="flex items-center justify-between"><h3 class="mock-page-title">Stok Hareketleri</h3><button class="mock-btn-primary">+ Yeni Hareket</button></div>
+                <div class="flex flex-wrap gap-2">
+                  <span class="mock-filter-btn mock-filter-active">Tüm Tipler</span><span class="mock-filter-btn">Giriş</span><span class="mock-filter-btn">Çıkış</span><span class="mock-filter-btn">Transfer</span><span class="mock-filter-btn">Düzeltme</span><span class="mock-filter-btn">İade</span>
+                  <div class="ml-auto flex gap-2"><span class="mock-filter-btn">Tarih Aralığı</span><span class="mock-filter-btn">Depo</span></div>
+                </div>
+                <div class="mock-table-wrap">
+                  <div class="mock-table-head" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;"><span>Tarih</span><span>Ürün</span><span>Tip</span><span>Miktar</span><span>Depo</span><span>Kullanıcı</span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;"><span class="mock-cell-muted">20 Nis, 14:32</span><span class="mock-cell-primary">Laptop</span><span><span class="mock-badge-green">GİRİŞ</span></span><span class="mock-cell-num" style="color: var(--color-success);">+25</span><span class="mock-cell-muted">Ana Depo</span><span class="mock-cell-muted">admin</span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;"><span class="mock-cell-muted">20 Nis, 13:18</span><span class="mock-cell-primary">Akıllı Telefon</span><span><span class="mock-badge-red">ÇIKIŞ</span></span><span class="mock-cell-num" style="color: var(--color-danger);">-18</span><span class="mock-cell-muted">Şube Deposu</span><span class="mock-cell-muted">user2</span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;"><span class="mock-cell-muted">20 Nis, 12:05</span><span class="mock-cell-primary">Basic T-Shirt</span><span><span class="mock-badge-blue">TRANSFER</span></span><span class="mock-cell-num">50</span><span class="mock-cell-muted">İST → ANK</span><span class="mock-cell-muted">admin</span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;"><span class="mock-cell-muted">20 Nis, 10:47</span><span class="mock-cell-primary">Süzme Bal 1kg</span><span><span class="mock-badge-yellow-sm">DÜZELTME</span></span><span class="mock-cell-num" style="color: var(--color-warning);">-3</span><span class="mock-cell-muted">Ana Depo</span><span class="mock-cell-muted">user3</span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.4fr 0.7fr 0.6fr 1fr 0.6fr;"><span class="mock-cell-muted">20 Nis, 09:22</span><span class="mock-cell-primary">Bluetooth Kulaklık</span><span><span class="mock-badge-purple">İADE</span></span><span class="mock-cell-num" style="color: var(--color-info);">+5</span><span class="mock-cell-muted">E-Ticaret Deposu</span><span class="mock-cell-muted">admin</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STOK RAPORU -->
+            <div class="demo-panel" id="panel-stock-report">
+              <div class="p-5 space-y-4">
+                <div><h3 class="mock-page-title">Stok Raporu</h3><p class="mock-page-sub">Stok seviyeleri ve düşük stok uyarıları</p></div>
+                <div class="flex gap-2">
+                  <span class="mock-filter-btn mock-filter-active">Düşük Stoklar <span class="ml-1 px-1.5 py-0.5 rounded text-[9px]" style="background: rgba(239,68,68,0.2); color: var(--color-danger);">4</span></span>
+                  <span class="mock-filter-btn">Tüm Stoklar</span>
+                  <div class="flex-1 flex items-center gap-2 mock-input-wrap ml-2"><svg class="w-3.5 h-3.5 shrink-0" style="color: var(--color-dark-text-muted)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg><span style="color: var(--color-dark-text-dim); font-size: 12px;">Ürün kodu, adı, depo ara...</span></div>
+                </div>
+                <div class="mock-table-wrap">
+                  <div class="mock-table-head" style="grid-template-columns: 0.8fr 1.3fr 0.8fr 0.8fr 0.6fr 0.5fr 0.5fr 0.6fr;"><span>Ürün Kodu</span><span>Ürün Adı</span><span>Kategori</span><span>Depo</span><span>Mevcut</span><span>Min.</span><span>Eksik</span><span></span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.3fr 0.8fr 0.8fr 0.6fr 0.5fr 0.5fr 0.6fr;"><span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-002</span><span class="mock-cell-primary">Akıllı Telefon</span><span class="mock-cell-muted">Elektronik</span><span class="mock-cell-muted">Ana Depo</span><span class="mock-cell-num" style="color: var(--color-danger);">3</span><span class="mock-cell-num">10</span><span class="mock-cell-num" style="color: var(--color-danger);">7</span><span><span class="mock-badge-green" style="font-size:9px; padding: 2px 6px;">Stok Ekle</span></span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.3fr 0.8fr 0.8fr 0.6fr 0.5fr 0.5fr 0.6fr;"><span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-004</span><span class="mock-cell-primary">Tablet</span><span class="mock-cell-muted">Elektronik</span><span class="mock-cell-muted">Şube Deposu</span><span class="mock-cell-num" style="color: var(--color-danger);">2</span><span class="mock-cell-num">5</span><span class="mock-cell-num" style="color: var(--color-danger);">3</span><span><span class="mock-badge-green" style="font-size:9px; padding: 2px 6px;">Stok Ekle</span></span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.3fr 0.8fr 0.8fr 0.6fr 0.5fr 0.5fr 0.6fr;"><span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-007</span><span class="mock-cell-primary">Siyah Çay 1kg</span><span class="mock-cell-muted">Gıda</span><span class="mock-cell-muted">E-Ticaret</span><span class="mock-cell-num" style="color: var(--color-warning);">8</span><span class="mock-cell-num">20</span><span class="mock-cell-num" style="color: var(--color-danger);">12</span><span><span class="mock-badge-green" style="font-size:9px; padding: 2px 6px;">Stok Ekle</span></span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 0.8fr 1.3fr 0.8fr 0.8fr 0.6fr 0.5fr 0.5fr 0.6fr;"><span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">PRD-009</span><span class="mock-cell-primary">Slim Gömlek</span><span class="mock-cell-muted">Giyim</span><span class="mock-cell-muted">Ana Depo</span><span class="mock-cell-num" style="color: var(--color-danger);">0</span><span class="mock-cell-num">15</span><span class="mock-cell-num" style="color: var(--color-danger);">15</span><span><span class="mock-badge-green" style="font-size:9px; padding: 2px 6px;">Stok Ekle</span></span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- GELİŞMİŞ RAPORLAR -->
+            <div class="demo-panel" id="panel-advanced-reports">
               <div class="p-5 space-y-5">
                 <div class="flex items-center justify-between">
-                  <h3 class="mock-page-title">Raporlar & Analitik</h3>
-                  <div class="flex gap-2">
-                    <span class="mock-filter-btn mock-filter-active">Haftalık</span>
-                    <span class="mock-filter-btn">Aylık</span>
-                    <span class="mock-filter-btn">CSV İndir</span>
-                  </div>
+                  <div><h3 class="mock-page-title">Gelişmiş Raporlar</h3><p class="mock-page-sub">Detaylı analiz ve raporlar</p></div>
+                  <div class="flex gap-2"><span class="mock-filter-btn mock-filter-active">Haftalık</span><span class="mock-filter-btn">Aylık</span><span class="mock-filter-btn">CSV İndir</span></div>
                 </div>
-
-                <!-- Chart area -->
+                <div class="flex gap-2"><span class="mock-filter-btn mock-filter-active">Satış Trendleri</span><span class="mock-filter-btn">En Çok Satanlar</span><span class="mock-filter-btn">Karlılık</span><span class="mock-filter-btn">Stok Yaşlandırma</span></div>
                 <div class="rounded-lg border border-[var(--color-dark-border)] bg-[var(--color-dark-surface)] p-4">
                   <p style="font-family: var(--font-heading); font-size: 12px; font-weight: 600; color: var(--color-dark-text-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;">Stok Hareket Hacmi — Son 7 Gün</p>
-                  <!-- CSS bar chart -->
-                  <div class="mock-chart-wrap" aria-label="Bar chart showing stock movements over last 7 days">
-                    <div class="mock-chart-bar-group">
-                      <div class="mock-bar-stack">
-                        <span class="mock-bar-in" style="height: 60%"></span>
-                        <span class="mock-bar-out" style="height: 30%"></span>
-                      </div>
-                      <span class="mock-bar-label">Pzt</span>
-                    </div>
-                    <div class="mock-chart-bar-group">
-                      <div class="mock-bar-stack">
-                        <span class="mock-bar-in" style="height: 80%"></span>
-                        <span class="mock-bar-out" style="height: 50%"></span>
-                      </div>
-                      <span class="mock-bar-label">Sal</span>
-                    </div>
-                    <div class="mock-chart-bar-group">
-                      <div class="mock-bar-stack">
-                        <span class="mock-bar-in" style="height: 45%"></span>
-                        <span class="mock-bar-out" style="height: 65%"></span>
-                      </div>
-                      <span class="mock-bar-label">Çar</span>
-                    </div>
-                    <div class="mock-chart-bar-group">
-                      <div class="mock-bar-stack">
-                        <span class="mock-bar-in" style="height: 90%"></span>
-                        <span class="mock-bar-out" style="height: 40%"></span>
-                      </div>
-                      <span class="mock-bar-label">Per</span>
-                    </div>
-                    <div class="mock-chart-bar-group">
-                      <div class="mock-bar-stack">
-                        <span class="mock-bar-in" style="height: 70%"></span>
-                        <span class="mock-bar-out" style="height: 55%"></span>
-                      </div>
-                      <span class="mock-bar-label">Cum</span>
-                    </div>
-                    <div class="mock-chart-bar-group">
-                      <div class="mock-bar-stack">
-                        <span class="mock-bar-in" style="height: 35%"></span>
-                        <span class="mock-bar-out" style="height: 20%"></span>
-                      </div>
-                      <span class="mock-bar-label">Cmt</span>
-                    </div>
-                    <div class="mock-chart-bar-group">
-                      <div class="mock-bar-stack">
-                        <span class="mock-bar-in" style="height: 55%"></span>
-                        <span class="mock-bar-out" style="height: 35%"></span>
-                      </div>
-                      <span class="mock-bar-label">Paz</span>
-                    </div>
+                  <div class="mock-chart-wrap" aria-label="Bar chart">
+                    <div class="mock-chart-bar-group"><div class="mock-bar-stack"><span class="mock-bar-in" style="height: 60%"></span><span class="mock-bar-out" style="height: 30%"></span></div><span class="mock-bar-label">Pzt</span></div>
+                    <div class="mock-chart-bar-group"><div class="mock-bar-stack"><span class="mock-bar-in" style="height: 80%"></span><span class="mock-bar-out" style="height: 50%"></span></div><span class="mock-bar-label">Sal</span></div>
+                    <div class="mock-chart-bar-group"><div class="mock-bar-stack"><span class="mock-bar-in" style="height: 45%"></span><span class="mock-bar-out" style="height: 65%"></span></div><span class="mock-bar-label">Çar</span></div>
+                    <div class="mock-chart-bar-group"><div class="mock-bar-stack"><span class="mock-bar-in" style="height: 90%"></span><span class="mock-bar-out" style="height: 40%"></span></div><span class="mock-bar-label">Per</span></div>
+                    <div class="mock-chart-bar-group"><div class="mock-bar-stack"><span class="mock-bar-in" style="height: 70%"></span><span class="mock-bar-out" style="height: 55%"></span></div><span class="mock-bar-label">Cum</span></div>
+                    <div class="mock-chart-bar-group"><div class="mock-bar-stack"><span class="mock-bar-in" style="height: 35%"></span><span class="mock-bar-out" style="height: 20%"></span></div><span class="mock-bar-label">Cmt</span></div>
+                    <div class="mock-chart-bar-group"><div class="mock-bar-stack"><span class="mock-bar-in" style="height: 55%"></span><span class="mock-bar-out" style="height: 35%"></span></div><span class="mock-bar-label">Paz</span></div>
                   </div>
-                  <!-- Chart legend -->
-                  <div class="flex items-center gap-4 mt-3">
-                    <div class="flex items-center gap-1.5">
-                      <span class="w-2.5 h-2.5 rounded-sm" style="background: var(--color-success); display: block;"></span>
-                      <span style="font-size: 11px; color: var(--color-dark-text-muted);">Stok Giriş</span>
-                    </div>
-                    <div class="flex items-center gap-1.5">
-                      <span class="w-2.5 h-2.5 rounded-sm" style="background: var(--color-danger); display: block;"></span>
-                      <span style="font-size: 11px; color: var(--color-dark-text-muted);">Stok Çıkış</span>
-                    </div>
-                  </div>
+                  <div class="flex items-center gap-4 mt-3"><div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm" style="background: var(--color-success); display: block;"></span><span style="font-size: 11px; color: var(--color-dark-text-muted);">Stok Giriş</span></div><div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm" style="background: var(--color-danger); display: block;"></span><span style="font-size: 11px; color: var(--color-dark-text-muted);">Stok Çıkış</span></div></div>
                 </div>
-
-                <!-- Summary stats -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  <div class="mock-report-stat">
-                    <span class="mock-report-stat-num" style="color: var(--color-success);">1,284</span>
-                    <span class="mock-report-stat-label">Toplam Giriş</span>
-                    <span class="mock-report-stat-delta" style="color: var(--color-success);">+12.4%</span>
-                  </div>
-                  <div class="mock-report-stat">
-                    <span class="mock-report-stat-num" style="color: var(--color-danger);">876</span>
-                    <span class="mock-report-stat-label">Toplam Çıkış</span>
-                    <span class="mock-report-stat-delta" style="color: var(--color-danger);">-3.1%</span>
-                  </div>
-                  <div class="mock-report-stat">
-                    <span class="mock-report-stat-num" style="color: var(--color-brand-primary);">₺2.4M</span>
-                    <span class="mock-report-stat-label">Stok Değeri</span>
-                    <span class="mock-report-stat-delta" style="color: var(--color-success);">+8.7%</span>
-                  </div>
-                  <div class="mock-report-stat">
-                    <span class="mock-report-stat-num" style="color: var(--color-info);">156</span>
-                    <span class="mock-report-stat-label">Hareket/Gün</span>
-                    <span class="mock-report-stat-delta" style="color: var(--color-success);">+5.2%</span>
-                  </div>
+                  <div class="mock-report-stat"><span class="mock-report-stat-num" style="color: var(--color-success);">1,284</span><span class="mock-report-stat-label">Toplam Giriş</span><span class="mock-report-stat-delta" style="color: var(--color-success);">+12.4%</span></div>
+                  <div class="mock-report-stat"><span class="mock-report-stat-num" style="color: var(--color-danger);">876</span><span class="mock-report-stat-label">Toplam Çıkış</span><span class="mock-report-stat-delta" style="color: var(--color-danger);">-3.1%</span></div>
+                  <div class="mock-report-stat"><span class="mock-report-stat-num" style="color: var(--color-brand-primary);">₺2.4M</span><span class="mock-report-stat-label">Stok Değeri</span><span class="mock-report-stat-delta" style="color: var(--color-success);">+8.7%</span></div>
+                  <div class="mock-report-stat"><span class="mock-report-stat-num" style="color: var(--color-info);">156</span><span class="mock-report-stat-label">Hareket/Gün</span><span class="mock-report-stat-delta" style="color: var(--color-success);">+5.2%</span></div>
                 </div>
               </div>
             </div>
 
-          </div><!-- end content -->
-        </div><!-- end app shell -->
-      </div><!-- end browser window -->
-    </div><!-- end demo container -->
-  </div><!-- end max-w -->
+            <!-- AYARLAR -->
+            <div class="demo-panel" id="panel-settings">
+              <div class="p-5 space-y-4">
+                <div><h3 class="mock-page-title">Ayarlar</h3><p class="mock-page-sub">Sistem ayarları ve tercihler</p></div>
+                <div class="flex gap-2"><span class="mock-filter-btn mock-filter-active">Tercihler</span><span class="mock-filter-btn">Menü Düzeni</span><span class="mock-filter-btn">Veri</span></div>
+                <div class="rounded-lg border border-[var(--color-dark-border)] bg-[var(--color-dark-surface)] p-5 space-y-5">
+                  <div class="flex items-center justify-between"><span class="mock-table-header-label">Görünüm Ayarları</span><span class="mock-badge-outline" style="font-size:9px;">[SETTINGS:001]</span></div>
+                  <div class="flex items-center justify-between py-3 border-b border-[var(--color-dark-border)]"><span style="font-size: 13px; color: var(--color-dark-text);">Tema</span><div class="flex gap-1"><span class="mock-filter-btn mock-filter-active" style="padding: 4px 10px; font-size: 10px;">Koyu</span><span class="mock-filter-btn" style="padding: 4px 10px; font-size: 10px;">Açık</span></div></div>
+                  <div class="flex items-center justify-between py-3 border-b border-[var(--color-dark-border)]"><span style="font-size: 13px; color: var(--color-dark-text);">Dil</span><div class="mock-input-wrap" style="flex: unset; padding: 4px 12px; min-width: 120px;"><span style="font-size: 12px; color: var(--color-dark-text);">Türkçe ▾</span></div></div>
+                  <div class="flex items-center justify-between py-3"><span style="font-size: 13px; color: var(--color-dark-text);">CSV Veri Aktarımı</span><div class="flex gap-2"><span class="mock-filter-btn" style="padding: 4px 10px; font-size: 10px;">Ürünler</span><span class="mock-filter-btn" style="padding: 4px 10px; font-size: 10px;">Kategoriler</span><span class="mock-filter-btn" style="padding: 4px 10px; font-size: 10px;">Depolar</span></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- İÇE AKTARMA -->
+            <div class="demo-panel" id="panel-import">
+              <div class="p-5 space-y-4">
+                <div><h3 class="mock-page-title">Ürün İçeri Aktar</h3><p class="mock-page-sub">Ledarabul web sitesinden ürün çekin ve sisteme aktarın</p></div>
+                <div class="rounded-lg border border-[var(--color-dark-border)] bg-[var(--color-dark-surface)] p-5 space-y-4">
+                  <span class="mock-table-header-label">Kaynak Ayarları</span>
+                  <div><span style="font-size: 11px; color: var(--color-dark-text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">URL *</span><div class="mock-input-wrap mt-1" style="flex: unset;"><span style="font-size: 12px; color: var(--color-dark-text-dim);">https://ledarabul.com/urun-kategori/...</span></div></div>
+                  <div><span style="font-size: 11px; color: var(--color-dark-text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Kategori *</span><div class="mock-input-wrap mt-1" style="flex: unset;"><span style="font-size: 12px; color: var(--color-dark-text);">Elektronik ▾</span></div></div>
+                  <div class="flex gap-2"><button class="mock-btn-primary">Önizle</button><button class="mock-btn-primary" style="background: var(--color-success);">İçeri Aktar (4 ürün)</button></div>
+                </div>
+                <div class="mock-table-wrap">
+                  <div class="mock-table-head" style="grid-template-columns: 1fr 2fr 1fr 0.8fr;"><span>Kod</span><span>Ad</span><span>Fiyat</span><span>Stok</span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 1fr 2fr 1fr 0.8fr;"><span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">LED-8821</span><span class="mock-cell-primary">LED Panel 60x60</span><span class="mock-cell-num">₺1.234</span><span class="mock-cell-num">24</span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 1fr 2fr 1fr 0.8fr;"><span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">LED-8822</span><span class="mock-cell-primary">LED Panel 30x120</span><span class="mock-cell-num">₺890</span><span class="mock-cell-num">18</span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 1fr 2fr 1fr 0.8fr;"><span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">LED-9010</span><span class="mock-cell-primary">Sıva Altı Spot 12W</span><span class="mock-cell-num">₺245</span><span class="mock-cell-num">120</span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 1fr 2fr 1fr 0.8fr;"><span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-brand-primary);">LED-9015</span><span class="mock-cell-primary">Lineer Aydınlatma 120cm</span><span class="mock-cell-num">₺560</span><span class="mock-cell-num">35</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- KULLANICILAR -->
+            <div class="demo-panel" id="panel-users">
+              <div class="p-5 space-y-4">
+                <div class="flex items-center justify-between"><div><h3 class="mock-page-title">Kullanıcı Yönetimi</h3><p class="mock-page-sub">Kullanıcıları oluştur, düzenle ve yetkilendir</p></div><button class="mock-btn-primary">+ Yeni Kullanıcı</button></div>
+                <div class="mock-table-wrap">
+                  <div class="mock-table-head" style="grid-template-columns: 1.2fr 1.5fr 0.6fr 0.6fr 1fr 0.8fr;"><span>Kullanıcı Adı</span><span>Email</span><span>Rol</span><span>Durum</span><span>Son Giriş</span><span>İşlemler</span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 1.2fr 1.5fr 0.6fr 0.6fr 1fr 0.8fr;"><span class="mock-cell-primary">admin</span><span class="mock-cell-muted">admin@glastok.com</span><span><span class="mock-badge-yellow" style="font-size:9px; padding: 2px 6px;">Admin</span></span><span><span class="mock-badge-green">Aktif</span></span><span class="mock-cell-muted">20.04.2026 14:30</span><span class="flex gap-1"><span class="mock-link" title="Düzenle">✎</span><span class="mock-link" title="İzinler">🔑</span><span class="mock-link" title="Şifre">🔒</span></span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 1.2fr 1.5fr 0.6fr 0.6fr 1fr 0.8fr;"><span class="mock-cell-primary">ahmet.yilmaz</span><span class="mock-cell-muted">ahmet@firma.com</span><span><span class="mock-badge-outline" style="font-size:9px; padding: 2px 6px;">User</span></span><span><span class="mock-badge-green">Aktif</span></span><span class="mock-cell-muted">20.04.2026 10:15</span><span class="flex gap-1"><span class="mock-link" title="Düzenle">✎</span><span class="mock-link" title="İzinler">🔑</span><span class="mock-link" title="Şifre">🔒</span></span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 1.2fr 1.5fr 0.6fr 0.6fr 1fr 0.8fr;"><span class="mock-cell-primary">zeynep.kaya</span><span class="mock-cell-muted">zeynep@firma.com</span><span><span class="mock-badge-outline" style="font-size:9px; padding: 2px 6px;">User</span></span><span><span class="mock-badge-dim">Pasif</span></span><span class="mock-cell-muted">15.04.2026 09:42</span><span class="flex gap-1"><span class="mock-link" title="Düzenle">✎</span><span class="mock-link" title="İzinler">🔑</span><span class="mock-link" title="Şifre">🔒</span></span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- AKTİVİTE TAKİP -->
+            <div class="demo-panel" id="panel-activity-log">
+              <div class="p-5 space-y-4">
+                <div><h3 class="mock-page-title">Aktivite Takip</h3><p class="mock-page-sub">Tüm kullanıcı işlemlerini ve stok hareketlerini izleyin</p></div>
+                <div class="flex flex-wrap gap-2">
+                  <div class="mock-input-wrap" style="flex: unset; min-width: 100px;"><span style="font-size: 11px; color: var(--color-dark-text-dim);">Kullanıcı</span></div>
+                  <div class="mock-input-wrap" style="flex: unset; min-width: 100px;"><span style="font-size: 11px; color: var(--color-dark-text);">Tüm İşlemler ▾</span></div>
+                  <div class="mock-input-wrap" style="flex: unset; min-width: 100px;"><span style="font-size: 11px; color: var(--color-dark-text);">Tüm Tipler ▾</span></div>
+                  <button class="mock-btn-primary" style="padding: 5px 10px; font-size: 10px;">Filtrele</button>
+                </div>
+                <div class="flex items-center justify-between"><span style="font-size: 11px; color: var(--color-dark-text-muted);">Toplam 1,247 kayıt · Sayfa 1 / 25</span><div class="flex gap-1"><span class="mock-filter-btn" style="padding: 4px 8px; font-size: 10px;">‹ Önceki</span><span class="mock-filter-btn" style="padding: 4px 8px; font-size: 10px;">Sonraki ›</span></div></div>
+                <div class="mock-table-wrap">
+                  <div class="mock-table-head" style="grid-template-columns: 1fr 0.7fr 0.7fr 0.7fr 1.5fr 0.8fr;"><span>Tarih</span><span>Kullanıcı</span><span>İşlem</span><span>Entity</span><span>Detay</span><span>IP Adresi</span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 1fr 0.7fr 0.7fr 0.7fr 1.5fr 0.8fr;"><span class="mock-cell-muted">20.04 14:32</span><span class="mock-cell-primary">admin</span><span><span class="mock-badge-green" style="font-size:9px; padding:1px 5px;">Oluşturma</span></span><span class="mock-cell-muted">Stok Hareketi</span><span class="mock-cell-muted">Laptop +25 adet giriş</span><span style="font-family: var(--font-mono); font-size: 10px; color: var(--color-dark-text-dim);">192.168.1.10</span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 1fr 0.7fr 0.7fr 0.7fr 1.5fr 0.8fr;"><span class="mock-cell-muted">20.04 13:18</span><span class="mock-cell-primary">user2</span><span><span class="mock-badge-green" style="font-size:9px; padding:1px 5px;">Oluşturma</span></span><span class="mock-cell-muted">Stok Hareketi</span><span class="mock-cell-muted">Akıllı Telefon -18 çıkış</span><span style="font-family: var(--font-mono); font-size: 10px; color: var(--color-dark-text-dim);">192.168.1.25</span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 1fr 0.7fr 0.7fr 0.7fr 1.5fr 0.8fr;"><span class="mock-cell-muted">20.04 12:05</span><span class="mock-cell-primary">admin</span><span><span class="mock-badge-blue" style="font-size:9px; padding:1px 5px;">Güncelleme</span></span><span class="mock-cell-muted">Ürün</span><span class="mock-cell-muted">Laptop fiyat güncellendi</span><span style="font-family: var(--font-mono); font-size: 10px; color: var(--color-dark-text-dim);">192.168.1.10</span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 1fr 0.7fr 0.7fr 0.7fr 1.5fr 0.8fr;"><span class="mock-cell-muted">20.04 10:00</span><span class="mock-cell-primary">admin</span><span><span class="mock-badge-yellow" style="font-size:9px; padding:1px 5px;">Giriş</span></span><span class="mock-cell-muted">Kullanıcı</span><span class="mock-cell-muted">Başarılı oturum açma</span><span style="font-family: var(--font-mono); font-size: 10px; color: var(--color-dark-text-dim);">192.168.1.10</span></div>
+                  <div class="mock-table-row" style="grid-template-columns: 1fr 0.7fr 0.7fr 0.7fr 1.5fr 0.8fr;"><span class="mock-cell-muted">20.04 09:58</span><span class="mock-cell-primary">bilinmiyor</span><span><span class="mock-badge-red" style="font-size:9px; padding:1px 5px;">Başarısız</span></span><span class="mock-cell-muted">Kullanıcı</span><span class="mock-cell-muted">Hatalı şifre denemesi</span><span style="font-family: var(--font-mono); font-size: 10px; color: var(--color-dark-text-dim);">85.105.22.4</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
-  /* ===== TAB BUTTONS ===== */
-  .demo-tab {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 10px 20px;
-    font-family: var(--font-heading);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: var(--color-dark-text-muted);
-    background: var(--color-dark-surface-alt);
-    border: 1px solid var(--color-dark-border);
-    border-bottom: none;
-    border-radius: 8px 8px 0 0;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-  }
-  .demo-tab:hover {
-    color: var(--color-dark-text);
-    background: var(--color-dark-surface);
-  }
-  .demo-tab.active {
-    color: var(--color-brand-primary);
-    background: var(--color-dark-surface-alt);
-    border-color: var(--color-dark-border-light);
-    box-shadow: inset 0 2px 0 var(--color-brand-primary);
-  }
-  .demo-tab-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-dark-border-light);
-    display: block;
-    transition: background 0.2s;
-  }
-  .demo-tab.active .demo-tab-dot {
-    background: var(--color-brand-primary);
-    box-shadow: 0 0 6px rgba(255, 214, 0, 0.5);
-  }
+  .demo-panel { display: none; }
+  .demo-panel.active { display: block; animation: panelFadeIn 0.3s var(--ease-out-expo) forwards; }
+  @keyframes panelFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-  /* ===== PANELS ===== */
-  .demo-panel {
-    display: none;
-  }
-  .demo-panel.active {
-    display: block;
-    animation: panelFadeIn 0.3s var(--ease-out-expo) forwards;
-  }
-  @keyframes panelFadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+  .sidebar-nav-item { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 6px; font-family: var(--font-body); font-size: 12px; color: var(--color-dark-text-muted); cursor: pointer; transition: all 0.15s ease; white-space: nowrap; }
+  .sidebar-nav-item:hover { background: rgba(255,255,255,0.04); color: var(--color-dark-text); }
+  .sidebar-nav-active { background: rgba(255,214,0,0.08); color: var(--color-brand-primary) !important; }
 
-  /* ===== SIDEBAR NAV ===== */
-  .sidebar-nav-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 7px 10px;
-    border-radius: 6px;
-    font-family: var(--font-body);
-    font-size: 12px;
-    color: var(--color-dark-text-muted);
-    cursor: pointer;
-    transition: all 0.15s ease;
-  }
-  .sidebar-nav-item:hover {
-    background: rgba(255,255,255,0.04);
-    color: var(--color-dark-text);
-  }
-  .sidebar-nav-active {
-    background: rgba(255,214,0,0.08);
-    color: var(--color-brand-primary) !important;
-  }
-
-  /* ===== MOCK UI ELEMENTS ===== */
-  .mock-page-title {
-    font-family: var(--font-heading);
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--color-dark-text);
-    letter-spacing: -0.02em;
-  }
-  .mock-page-sub {
-    font-size: 11px;
-    color: var(--color-dark-text-muted);
-    margin-top: 2px;
-  }
-  .mock-table-wrap {
-    border: 1px solid var(--color-dark-border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .mock-table-head {
-    display: grid;
-    grid-template-columns: 1.5fr 0.7fr 0.6fr 1fr 0.6fr;
-    gap: 8px;
-    padding: 8px 14px;
-    background: var(--color-dark-surface-alt);
-    border-bottom: 1px solid var(--color-dark-border);
-    font-family: var(--font-heading);
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--color-dark-text-dim);
-  }
-  .mock-table-row {
-    display: grid;
-    grid-template-columns: 1.5fr 0.7fr 0.6fr 1fr 0.6fr;
-    gap: 8px;
-    padding: 9px 14px;
-    border-bottom: 1px solid var(--color-dark-border);
-    align-items: center;
-    font-size: 12px;
-    transition: background 0.15s;
-  }
+  .mock-page-title { font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: var(--color-dark-text); letter-spacing: -0.02em; }
+  .mock-page-sub { font-size: 11px; color: var(--color-dark-text-muted); margin-top: 2px; }
+  .mock-table-wrap { border: 1px solid var(--color-dark-border); border-radius: 8px; overflow: hidden; }
+  .mock-table-head { display: grid; grid-template-columns: 1.5fr 0.7fr 0.6fr 1fr 0.6fr; gap: 8px; padding: 8px 14px; background: var(--color-dark-surface-alt); border-bottom: 1px solid var(--color-dark-border); font-family: var(--font-heading); font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-dark-text-dim); }
+  .mock-table-row { display: grid; grid-template-columns: 1.5fr 0.7fr 0.6fr 1fr 0.6fr; gap: 8px; padding: 9px 14px; border-bottom: 1px solid var(--color-dark-border); align-items: center; font-size: 12px; transition: background 0.15s; }
   .mock-table-row:last-child { border-bottom: none; }
   .mock-table-row:hover { background: rgba(255,255,255,0.02); }
-  .mock-cell-primary {
-    font-family: var(--font-body);
-    font-size: 12px;
-    color: var(--color-dark-text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .mock-cell-num {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--color-dark-text);
-  }
-  .mock-cell-muted {
-    font-size: 11px;
-    color: var(--color-dark-text-muted);
-  }
-  .mock-table-header-label {
-    font-family: var(--font-heading);
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--color-dark-text);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .mock-link {
-    font-family: var(--font-heading);
-    font-size: 11px;
-    color: var(--color-brand-primary);
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
+  .mock-cell-primary { font-family: var(--font-body); font-size: 12px; color: var(--color-dark-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mock-cell-num { font-family: var(--font-mono); font-size: 12px; color: var(--color-dark-text); }
+  .mock-cell-muted { font-size: 11px; color: var(--color-dark-text-muted); }
+  .mock-table-header-label { font-family: var(--font-heading); font-size: 12px; font-weight: 600; color: var(--color-dark-text); text-transform: uppercase; letter-spacing: 0.5px; }
+  .mock-link { font-family: var(--font-heading); font-size: 11px; color: var(--color-brand-primary); cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; }
 
-  /* Badges */
-  .mock-badge-green, .mock-badge-red, .mock-badge-blue,
-  .mock-badge-yellow, .mock-badge-yellow-sm, .mock-badge-purple,
-  .mock-badge-outline, .mock-badge-dim {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-family: var(--font-heading);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-  .mock-badge-green   { background: rgba(34,197,94,0.15);  color: var(--color-success); border: 1px solid rgba(34,197,94,0.2); }
-  .mock-badge-red     { background: rgba(239,68,68,0.15);  color: var(--color-danger);  border: 1px solid rgba(239,68,68,0.2); }
-  .mock-badge-blue    { background: rgba(59,130,246,0.15); color: var(--color-info);    border: 1px solid rgba(59,130,246,0.2); }
-  .mock-badge-yellow  { background: rgba(255,214,0,0.15);  color: var(--color-brand-primary); border: 1px solid rgba(255,214,0,0.2); }
+  .mock-badge-green, .mock-badge-red, .mock-badge-blue, .mock-badge-yellow, .mock-badge-yellow-sm, .mock-badge-purple, .mock-badge-outline, .mock-badge-dim { display: inline-block; padding: 2px 8px; border-radius: 4px; font-family: var(--font-heading); font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+  .mock-badge-green { background: rgba(34,197,94,0.15); color: var(--color-success); border: 1px solid rgba(34,197,94,0.2); }
+  .mock-badge-red { background: rgba(239,68,68,0.15); color: var(--color-danger); border: 1px solid rgba(239,68,68,0.2); }
+  .mock-badge-blue { background: rgba(59,130,246,0.15); color: var(--color-info); border: 1px solid rgba(59,130,246,0.2); }
+  .mock-badge-yellow { background: rgba(255,214,0,0.15); color: var(--color-brand-primary); border: 1px solid rgba(255,214,0,0.2); }
   .mock-badge-yellow-sm { background: rgba(234,179,8,0.15); color: var(--color-warning); border: 1px solid rgba(234,179,8,0.2); }
-  .mock-badge-purple  { background: rgba(168,85,247,0.15); color: #A855F7; border: 1px solid rgba(168,85,247,0.2); }
+  .mock-badge-purple { background: rgba(168,85,247,0.15); color: #A855F7; border: 1px solid rgba(168,85,247,0.2); }
   .mock-badge-outline { background: transparent; color: var(--color-dark-text-muted); border: 1px solid var(--color-dark-border-light); }
-  .mock-badge-dim     { background: rgba(255,255,255,0.04); color: var(--color-dark-text-dim); border: 1px solid var(--color-dark-border); }
+  .mock-badge-dim { background: rgba(255,255,255,0.04); color: var(--color-dark-text-dim); border: 1px solid var(--color-dark-border); }
 
-  .mock-stat-card {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 14px;
-    background: var(--color-dark-surface-alt);
-    border: 1px solid var(--color-dark-border);
-    border-left-width: 3px;
-    border-radius: 8px;
-  }
-  .mock-stat-num {
-    font-family: var(--font-heading);
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--color-dark-text);
-    letter-spacing: -0.03em;
-    line-height: 1;
-  }
-  .mock-stat-label {
-    font-size: 10px;
-    color: var(--color-dark-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-family: var(--font-heading);
-  }
-
-  .mock-alert-strip {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 14px;
-    border-radius: 8px;
-    background: rgba(234,179,8,0.06);
-    border: 1px solid rgba(234,179,8,0.2);
-    font-size: 12px;
-    color: var(--color-dark-text-muted);
-  }
-
-  .mock-btn-primary {
-    display: inline-flex;
-    align-items: center;
-    padding: 7px 14px;
-    background: var(--color-brand-primary);
-    color: var(--color-dark-bg);
-    font-family: var(--font-heading);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
+  .mock-stat-card { display: flex; flex-direction: column; gap: 4px; padding: 14px; background: var(--color-dark-surface-alt); border: 1px solid var(--color-dark-border); border-left-width: 3px; border-radius: 8px; }
+  .mock-stat-num { font-family: var(--font-heading); font-size: 22px; font-weight: 700; color: var(--color-dark-text); letter-spacing: -0.03em; line-height: 1; }
+  .mock-stat-label { font-size: 10px; color: var(--color-dark-text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-family: var(--font-heading); }
+  .mock-alert-strip { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 8px; background: rgba(234,179,8,0.06); border: 1px solid rgba(234,179,8,0.2); font-size: 12px; color: var(--color-dark-text-muted); }
+  .mock-btn-primary { display: inline-flex; align-items: center; padding: 7px 14px; background: var(--color-brand-primary); color: var(--color-dark-bg); font-family: var(--font-heading); font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; border-radius: 6px; border: none; cursor: pointer; transition: background 0.2s; }
   .mock-btn-primary:hover { background: var(--color-brand-primary-hover); }
-
-  .mock-input-wrap {
-    background: var(--color-dark-surface-alt);
-    border: 1px solid var(--color-dark-border);
-    border-radius: 6px;
-    padding: 7px 12px;
-    flex: 1;
-  }
-  .mock-filter-btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 7px 12px;
-    background: var(--color-dark-surface-alt);
-    border: 1px solid var(--color-dark-border);
-    border-radius: 6px;
-    font-family: var(--font-heading);
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--color-dark-text-muted);
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.15s;
-  }
+  .mock-input-wrap { background: var(--color-dark-surface-alt); border: 1px solid var(--color-dark-border); border-radius: 6px; padding: 7px 12px; flex: 1; }
+  .mock-filter-btn { display: inline-flex; align-items: center; padding: 7px 12px; background: var(--color-dark-surface-alt); border: 1px solid var(--color-dark-border); border-radius: 6px; font-family: var(--font-heading); font-size: 11px; font-weight: 600; color: var(--color-dark-text-muted); cursor: pointer; white-space: nowrap; transition: all 0.15s; }
   .mock-filter-btn:hover { border-color: var(--color-dark-border-light); color: var(--color-dark-text); }
   .mock-filter-active { border-color: var(--color-brand-primary) !important; color: var(--color-brand-primary) !important; background: rgba(255,214,0,0.06) !important; }
-
-  .mock-page-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 5px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--color-dark-text-muted);
-    background: var(--color-dark-surface-alt);
-    border: 1px solid var(--color-dark-border);
-    cursor: pointer;
-  }
+  .mock-page-btn { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 5px; font-family: var(--font-mono); font-size: 11px; color: var(--color-dark-text-muted); background: var(--color-dark-surface-alt); border: 1px solid var(--color-dark-border); cursor: pointer; }
   .mock-page-btn.active { background: var(--color-brand-primary); color: var(--color-dark-bg); border-color: var(--color-brand-primary); font-weight: 700; }
 
-  /* Bar chart */
-  .mock-chart-wrap {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-around;
-    height: 120px;
-    gap: 6px;
-    padding-top: 8px;
-    border-bottom: 1px solid var(--color-dark-border);
-  }
-  .mock-chart-bar-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    flex: 1;
-    height: 100%;
-  }
-  .mock-bar-stack {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    gap: 2px;
-    flex: 1;
-    width: 100%;
-    justify-content: flex-start;
-  }
-  .mock-bar-in, .mock-bar-out {
-    width: 100%;
-    border-radius: 3px 3px 0 0;
-    transition: height 0.6s var(--ease-out-expo);
-    min-height: 4px;
-  }
-  .mock-bar-in  { background: rgba(34,197,94,0.7); }
+  .mock-chart-wrap { display: flex; align-items: flex-end; justify-content: space-around; height: 120px; gap: 6px; padding-top: 8px; border-bottom: 1px solid var(--color-dark-border); }
+  .mock-chart-bar-group { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; height: 100%; }
+  .mock-bar-stack { display: flex; flex-direction: column-reverse; align-items: center; gap: 2px; flex: 1; width: 100%; justify-content: flex-start; }
+  .mock-bar-in, .mock-bar-out { width: 100%; border-radius: 3px 3px 0 0; transition: height 0.6s var(--ease-out-expo); min-height: 4px; }
+  .mock-bar-in { background: rgba(34,197,94,0.7); }
   .mock-bar-out { background: rgba(239,68,68,0.6); }
-  .mock-bar-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--color-dark-text-dim);
-  }
+  .mock-bar-label { font-family: var(--font-mono); font-size: 10px; color: var(--color-dark-text-dim); }
 
-  /* Report stats */
-  .mock-report-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    padding: 14px;
-    background: var(--color-dark-surface-alt);
-    border: 1px solid var(--color-dark-border);
-    border-radius: 8px;
-  }
-  .mock-report-stat-num {
-    font-family: var(--font-heading);
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1;
-  }
-  .mock-report-stat-label {
-    font-size: 10px;
-    color: var(--color-dark-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-family: var(--font-heading);
-  }
-  .mock-report-stat-delta {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 600;
-  }
+  .mock-report-stat { display: flex; flex-direction: column; gap: 3px; padding: 14px; background: var(--color-dark-surface-alt); border: 1px solid var(--color-dark-border); border-radius: 8px; }
+  .mock-report-stat-num { font-family: var(--font-heading); font-size: 20px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+  .mock-report-stat-label { font-size: 10px; color: var(--color-dark-text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-family: var(--font-heading); }
+  .mock-report-stat-delta { font-family: var(--font-mono); font-size: 11px; font-weight: 600; }
 
-  .scrollbar-hidden {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+  .scrollbar-hidden { -ms-overflow-style: none; scrollbar-width: none; }
   .scrollbar-hidden::-webkit-scrollbar { display: none; }
 </style>
 
 <script>
   (function() {
-    const tablist = document.getElementById('demo-tablist');
-    if (!tablist) return;
+    const sidebar = document.getElementById('demo-sidebar');
+    const demoApp = document.getElementById('demo-app');
+    const addressBar = document.getElementById('demo-address-bar');
+    if (!sidebar || !demoApp) return;
 
-    const demoSection = document.getElementById('demo');
-    const tabs    = tablist.querySelectorAll<HTMLButtonElement>('.demo-tab');
-    const panels  = demoSection?.querySelectorAll<HTMLElement>('.demo-panel') ?? document.querySelectorAll<HTMLElement>('.demo-panel');
+    const navItems = sidebar.querySelectorAll<HTMLElement>('.sidebar-nav-item[data-panel]');
+    const panels = demoApp.querySelectorAll<HTMLElement>('.demo-panel');
 
-    function activate(targetTab: HTMLButtonElement) {
-      tabs.forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-      });
+    function activatePanel(panelId: string) {
+      navItems.forEach(item => item.classList.remove('sidebar-nav-active'));
       panels.forEach(p => p.classList.remove('active'));
 
-      targetTab.classList.add('active');
-      targetTab.setAttribute('aria-selected', 'true');
+      const targetNav = sidebar.querySelector<HTMLElement>(`[data-panel="${panelId}"]`);
+      const targetPanel = document.getElementById(`panel-${panelId}`);
 
-      const panelId = targetTab.getAttribute('aria-controls');
-      if (panelId) {
-        const panel = document.getElementById(panelId);
-        if (panel) panel.classList.add('active');
+      if (targetNav) {
+        targetNav.classList.add('sidebar-nav-active');
+        if (addressBar && targetNav.dataset.url) {
+          addressBar.textContent = targetNav.dataset.url;
+        }
       }
+      if (targetPanel) targetPanel.classList.add('active');
     }
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => activate(tab));
-      tab.addEventListener('keydown', (e: KeyboardEvent) => {
-        const tabsArr = Array.from(tabs);
-        const idx = tabsArr.indexOf(tab);
-        let target: HTMLButtonElement | undefined;
-        if (e.key === 'ArrowRight') { e.preventDefault(); target = tabsArr[(idx + 1) % tabsArr.length]; }
-        if (e.key === 'ArrowLeft')  { e.preventDefault(); target = tabsArr[(idx - 1 + tabsArr.length) % tabsArr.length]; }
-        if (e.key === 'Home') { e.preventDefault(); target = tabsArr[0]; }
-        if (e.key === 'End')  { e.preventDefault(); target = tabsArr[tabsArr.length - 1]; }
-        if (target) { activate(target); target.focus(); }
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const panelId = item.dataset.panel;
+        if (panelId) activatePanel(panelId);
       });
     });
   })();
